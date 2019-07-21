@@ -1,11 +1,10 @@
 #!/bin/bash
 
 THIS_NODE_HOST=k8smaster
-THIS_NODE_IP=192.168.56.108
 
 #hostname
 hostnamectl set-hostname ${THIS_NODE_HOST} && \
-echo -e "${THIS_NODE_IP} ${THIS_NODE_HOST}" >> /etc/hosts
+cat hosts >> /etc/hosts
 
 #firewalld
 systemctl stop firewalld && \
