@@ -1,6 +1,7 @@
 #!/bin/bash
 
 THIS_NODE_HOST=k8smaster
+THIS_NODE_IP=192.168.56.103
 
 #hostname
 hostnamectl set-hostname ${THIS_NODE_HOST} && \
