@@ -2,8 +2,7 @@ CentOS Linux release 7.6.1810 (Core)
 Kubernetes version: v1.15.0
 
 Deployment  
-git clone https://github.com/henryliu18/kubernetes-poc.git  
-cd kubernetes-poc  
+yum install git -y  && git clone https://github.com/henryliu18/kubernetes-poc.git  && cd kubernetes-poc  
 Review hosts for environment  
 Review (master host) THIS_NODE_HOST and THIS_NODE_IP => master.sh  
 Review (node host)THIS_NODE_HOST => node.sh
