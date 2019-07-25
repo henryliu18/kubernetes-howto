@@ -11,15 +11,11 @@ echo IP address:
 read THIS_NODE_IP
 echo MASTER IP address:
 read MAS_NODE_IP
-
-sudo scp root@$MAS_NODE_IP:/etc/hosts /etc/hosts
-
-sudo hostnamectl set-hostname ${THIS_NODE_HOST} && \
-echo -e "${THIS_NODE_IP} ${THIS_NODE_HOST}" | sudo tee -a /etc/hosts
-
-sudo scp /etc/hosts root@$MAS_NODE_IP:/etc/hosts
-
 echo JOIN command:
 read JOINCMD
 
+sudo scp root@$MAS_NODE_IP:/etc/hosts /etc/hosts
+sudo hostnamectl set-hostname ${THIS_NODE_HOST} && \
+echo -e "${THIS_NODE_IP} ${THIS_NODE_HOST}" | sudo tee -a /etc/hosts
+sudo scp /etc/hosts root@$MAS_NODE_IP:/etc/hosts
 sudo bash -c "$JOINCMD"
