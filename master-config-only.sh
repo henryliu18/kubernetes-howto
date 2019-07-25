@@ -36,7 +36,13 @@ mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 
+#pod network
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+#force patch coredns
+sudo curl https://raw.githubusercontent.com/zlabjp/kubernetes-scripts/master/force-update-deployment --output /tmp/force-update-deployment
+sudo chmod +x /tmp/force-update-deployment
+sudo /tmp/force-update-deployment coredns -n kube-system
 
 #deploy dashboard (localhost only)
 sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
