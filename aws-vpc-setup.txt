@@ -1,0 +1,15 @@
+default vpc
+public ip
+security group - k8s (master and slaves)
+-tcp 30000 - 32767 anywhere
+-tcp 443 anywhere
+-tcp 6443 anywhere
+-tcp 2379 - 2380 anywhere
+-tcp 10250 anywhere
+-tcp 179 anywhere
+-udp 8285 anywhere
+-udp 8472 anywhere
+-tcp Target-Port LoadBalancer-security-group  e.g. tcp 8080 LoadBalancer-security-group
+
+security group - LoadBalancer-security-group
+-tcp 80 anywhere

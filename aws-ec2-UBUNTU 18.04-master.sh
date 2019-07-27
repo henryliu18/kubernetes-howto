@@ -2,13 +2,8 @@
 
 #KUBERNETES MASTER NODE BUILD FOR AWS EC2 UBUNTU 18.04 LTS
 
-#CHANGE BELOW HOSTNAME
-host_name='master'
-int_ip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
-
 #BEGIN
-sudo hostnamectl set-hostname ${host_name} && \
-echo -e "${int_ip} ${host_name}" | sudo tee -a /etc/hosts && \
+int_ip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
 sudo apt-get update -y && \
 sudo apt install docker.io -y && \
 sudo systemctl enable docker && \
