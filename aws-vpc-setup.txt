@@ -1,10 +1,10 @@
 default vpc
 public ip
 security group - k8s (master and slaves)
--tcp 30000 - 32767 anywhere
+-tcp 30000-32767 anywhere
+-tcp 2379-2380 anywhere
 -tcp 443 anywhere
 -tcp 6443 anywhere
--tcp 2379 - 2380 anywhere
 -tcp 10250 anywhere
 -tcp 179 anywhere
 -udp 8285 anywhere
