@@ -12,6 +12,7 @@ echo -e "{
 }" | sudo tee -a /etc/docker/daemon.json && \
 sudo systemctl restart docker && \
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add && \
+sudo apt-get install software-properties-common -y && \
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" -y && \
 sudo apt install kubeadm -y && \
 sudo swapoff -a && \
@@ -30,10 +31,10 @@ kind: ClusterConfiguration
 kubernetesVersion: v1.15.0
 networking:
   podSubnet: 10.244.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
-sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > /home/ubuntu/k8sinit.log && \
-mkdir -p /home/ubuntu/.kube && \
-sudo cp -i /etc/kubernetes/admin.conf /home/ubuntu/.kube/config && \
-sudo chown $(id -u):$(id -g) /home/ubuntu/.kube/config && \
+sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > /tmp/k8sinit.log && \
+mkdir -p ~/.kube && \
+sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config && \
+sudo chown $(id -u):$(id -g) ~/.kube/config && \
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml && \
 echo "alias k='kubectl'" | sudo tee -a ~/.bashrc
 
