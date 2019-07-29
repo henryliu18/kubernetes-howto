@@ -6,7 +6,7 @@ Follow aws-ec2* for the build
 
 Nginx Ingress Controller (free)  
 default vpc  
-public ip for edge node  
+public ip for master and edge nodes  
 security group for Kubernetes nodes - SGk8s  
   Inbound:  
     -tcp 22 anywhere (ssh)  
