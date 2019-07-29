@@ -1,3 +1,10 @@
+-AWS EC2 baremetal  
+Ubuntu 18.04  
+Kubernetes version: v1.15.0
+
+Follow aws-ec2* for the build
+
+-VIRTUALBOX  
 CentOS Linux release 7.6.1810 (Core)  
 Kubernetes version: v1.15.0
 
