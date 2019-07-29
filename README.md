@@ -4,6 +4,40 @@ Kubernetes version: v1.15.0
 
 Follow aws-ec2* for the build
 
+Nginx Ingress Controller (free)  
+default vpc  
+public ip for edge node  
+security group for Kubernetes nodes - SGk8s  
+  Inbound:  
+    -tcp 22 anywhere (ssh)  
+    -tcp 30000-32767 anywhere  
+    -tcp 2379-2380 anywhere  
+    -tcp 443 anywhere  
+    -tcp 6443 anywhere  
+    -tcp 10250 anywhere  
+    -tcp 179 anywhere  
+    -udp 8285 anywhere  
+    -udp 8472 anywhere  
+
+AWS ELB  
+default vpc  
+public ip  
+security group for Kubernetes nodes - SGk8s  
+  Inbound:  
+    -tcp 22 anywhere (ssh)  
+    -tcp 30000-32767 anywhere  
+    -tcp 2379-2380 anywhere  
+    -tcp 443 anywhere  
+    -tcp 6443 anywhere  
+    -tcp 10250 anywhere  
+    -tcp 179 anywhere  
+    -udp 8285 anywhere  
+    -udp 8472 anywhere  
+    -tcp Target-Port LoadBalancer-security-group  e.g. tcp 8080 LoadBalancer-security-group  
+security group for AWS ELB - SGELB  
+  Inbound:  
+    -tcp 80 anywhere  
+
 -VIRTUALBOX  
 CentOS Linux release 7.6.1810 (Core)  
 Kubernetes version: v1.15.0
