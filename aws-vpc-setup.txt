@@ -1,6 +1,7 @@
-default vpc
+default vpc is fine
 public ip
 security group - k8s (master and slaves)
+-tcp 22 anywhere (ssh)
 -tcp 30000-32767 anywhere
 -tcp 2379-2380 anywhere
 -tcp 443 anywhere
