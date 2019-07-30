@@ -1,4 +1,4 @@
--AWS EC2 baremetal  
+-AWS EC2  
 Ubuntu 18.04  
 Kubernetes version: v1.15.0
 
