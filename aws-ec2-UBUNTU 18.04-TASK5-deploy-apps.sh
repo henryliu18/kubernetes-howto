@@ -6,6 +6,10 @@
 #BEGIN
 #Step 1: Set a valid domain name to demonstrate how Nginx-Ingress controller handles HTTPS requests, e.g. xyz.com
 yourdomain=''
+until [ "${yourdomain}" != '' ]; do
+        echo 'enter domain name:'
+        read yourdomain
+done
 #Step 2: Deploy a Dashboard ui image from helm
 echo -e "image:
   repository: k8s.gcr.io/kubernetes-dashboard-amd64

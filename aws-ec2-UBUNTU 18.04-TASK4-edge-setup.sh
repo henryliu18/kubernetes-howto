@@ -6,6 +6,10 @@
 #BEGIN
 #Step 1: Set edge node name, node name can be listed by running kubectl get node, try not to use master as edge node
 edge_nodename=''
+until [ "${edge_nodename}" != '' ]; do
+        echo 'enter edge node name:'
+        read edge_nodename
+done
 #Step 2: Label selected worker node(s) edge (open to internet) which will be selected to deploy Nginx Ingress Controller in yaml below (nodeSelector)
 sudo kubectl label node ${edge_nodename} node-role.kubernetes.io/edge= && \
 #Step 3: Create yaml for Nginx Ingress Controller on edge node
