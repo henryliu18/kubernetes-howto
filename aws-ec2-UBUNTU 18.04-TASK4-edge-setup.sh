@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#KUBERNETES EDGE NODE BUILD FOR AWS EC2 UBUNTU 18.04 LTS, EDGE NODE ACTS AS L7 LOAD BALANCER FOR HTTPS PROXY (IMPLEMENTED BY NGINX INGRESS), EXECUTE BELOW ON THE MASTER NODE
+#KUBERNETES EDGE NODE BUILD FOR AWS EC2 UBUNTU 18.04 LTS, EDGE NODE ACTS AS L7 LOAD BALANCER FOR HTTPS PROXY
+#(IMPLEMENTED BY NGINX INGRESS CONTROLLER), EXECUTE BELOW ON THE MASTER NODE
 
 #BEGIN
 #Step 1: Set edge node name, node name can be listed by running kubectl get node, try not to use master as edge node
@@ -51,4 +52,5 @@ sudo helm install stable/nginx-ingress \
 -n nginx-ingress \
 --namespace ingress-nginx  \
 -f /tmp/ingress-nginx.yaml
+echo "Node: ${edge_nodename} is labeled as edge and has nginx-ingress deployed to it"
 #END

@@ -19,7 +19,7 @@ kind: ClusterConfiguration
 kubernetesVersion: v1.15.0
 networking:
   podSubnet: 10.244.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
-sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > /tmp/k8sinit.log && \
+sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > ~/k8sinit.log && \
 mkdir -p ~/.kube && \
 sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config && \
 sudo chown $(id -u):$(id -g) ~/.kube/config && \
@@ -56,4 +56,5 @@ subjects:
     namespace: kube-system" | sudo tee -a /tmp/helm-rbac.yaml && \
 sudo kubectl create -f /tmp/helm-rbac.yaml && \
 sudo helm init --service-account tiller --skip-refresh
+echo "Cluster init and helm installtion is completed successfully"
 #END
