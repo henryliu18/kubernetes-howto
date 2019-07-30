@@ -36,7 +36,12 @@ mkdir -p ~/.kube && \
 sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config && \
 sudo chown $(id -u):$(id -g) ~/.kube/config && \
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml && \
-echo "alias k='kubectl'" | sudo tee -a ~/.bashrc
+echo "alias k='kubectl'" | sudo tee -a ~/.bashrc && \
+echo "alias kpod='kubectl get pod -o wide --all-namespaces'" | sudo tee -a ~/.bashrc && \
+echo "alias ksvc='kubectl get svc -o wide --all-namespaces'" | sudo tee -a ~/.bashrc && \
+echo "alias king='kubectl get ingress --all-namespaces'" | sudo tee -a ~/.bashrc && \
+echo "alias knod='kubectl get node -o wide'" | sudo tee -a ~/.bashrc && \
+echo "alias kdep='kubectl get deployment -o wide --all-namespaces'" | sudo tee -a ~/.bashrc
 
 #Install helm - The Kubernetes Package Manager
 sleep 30 && \
