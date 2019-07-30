@@ -4,18 +4,6 @@
 
 #BEGIN
 int_ip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
-sudo apt-get update -y && \
-sudo apt install docker.io -y && \
-sudo systemctl enable docker && \
-echo -e "{
-  \"exec-opts\": [\"native.cgroupdriver=systemd\"]
-}" | sudo tee -a /etc/docker/daemon.json && \
-sudo systemctl restart docker && \
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add && \
-sudo apt-get install software-properties-common -y && \
-sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" -y && \
-sudo apt install kubeadm -y && \
-sudo swapoff -a && \
 echo -e "apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 localAPIEndpoint:
