@@ -29,6 +29,8 @@ echo "alias kpod='kubectl get pod -o wide --all-namespaces'" | sudo tee -a ~/.ba
 echo "alias ksvc='kubectl get svc -o wide --all-namespaces'" | sudo tee -a ~/.bashrc && \
 echo "alias king='kubectl get ingress --all-namespaces'" | sudo tee -a ~/.bashrc && \
 echo "alias knod='kubectl get node -o wide'" | sudo tee -a ~/.bashrc && \
+echo "alias klog='kubectl logs'" | sudo tee -a ~/.bashrc && \
+echo "alias kexe='kubectl exec'" | sudo tee -a ~/.bashrc && \
 echo "alias kdep='kubectl get deployment -o wide --all-namespaces'" | sudo tee -a ~/.bashrc
 
 #Install helm - The Kubernetes Package Manager
