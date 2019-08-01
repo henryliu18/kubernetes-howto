@@ -124,10 +124,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - test.birdgg.com
-    secretName: test-birdgg-secret
+    - test.${yourdomain}
+    secretName: test-${yourdomain}-secret
   rules:
-  - host: test.birdgg.com
+  - host: test.${yourdomain}
     http:
       paths:
       - path: /
