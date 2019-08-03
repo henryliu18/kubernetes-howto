@@ -2,41 +2,63 @@
 Ubuntu 18.04  
 Kubernetes version: v1.15.0
 
-Follow aws-ec2* for the build
+Follow aws-ec2* for the build (manual)  
+Follow aws-ec2*-userdata for the build (auto)  
 
-Nginx Ingress Controller (free)  
-default vpc  
-public ip for master and edge nodes  
-security group for Kubernetes nodes - SGk8s  
-  Inbound:  
-    -tcp 22 anywhere (ssh)  
-    -tcp 30000-32767 anywhere  
-    -tcp 2379-2380 anywhere  
-    -tcp 443 anywhere  
-    -tcp 6443 anywhere  
-    -tcp 10250 anywhere  
-    -tcp 179 anywhere  
-    -udp 8285 anywhere  
-    -udp 8472 anywhere  
+Load Balancer solution: Nginx Ingress Controller  
+Default vpc  
+Public ip
+Security Group for master node  
+  -Inbound:  
+    TCP 6443  
+    TCP 443  
+    TCP 2379-2380  
+    UDP 8285  
+    UDP 8472  
 
-AWS ELB  
+Security Group for worker node  
+  -Inbound  
+    TCP 30000-32767  
+    TCP 10250  
+    TCP 10255  
+    TCP 179  
+    TCP 2379-2380  
+    TCP 80 (For Nginx Ingress)  
+    TCP 443 (For Nginx Ingress)  
+
+Security Group for general admin
+  -Inbound
+    TCP 22
+    All ICMP IPV4
+
+Load Balancer solution: AWS ELB  
 default vpc  
-public ip  
-security group for Kubernetes nodes - SGk8s  
-  Inbound:  
-    -tcp 22 anywhere (ssh)  
-    -tcp 30000-32767 anywhere  
-    -tcp 2379-2380 anywhere  
-    -tcp 443 anywhere  
-    -tcp 6443 anywhere  
-    -tcp 10250 anywhere  
-    -tcp 179 anywhere  
-    -udp 8285 anywhere  
-    -udp 8472 anywhere  
-    -tcp Target-Port LoadBalancer-security-group  e.g. tcp 8080 LoadBalancer-security-group  
-security group for AWS ELB - SGELB  
+Public ip  
+Security Group for master node  
+  -Inbound:  
+    TCP 6443  
+    TCP 443  
+    TCP 2379-2380  
+    UDP 8285  
+    UDP 8472  
+    TCP Security-Group-of-ELB  
+
+Security Group for worker node  
+  -Inbound  
+    TCP 30000-32767  
+    TCP 10250  
+    TCP 10255  
+    TCP 179  
+    TCP 2379-2380  
+
+Security Group for ELB  
   Inbound:  
     -tcp 80 anywhere  
+
+Security Group for general admin
+  -Inbound
+    TCP 22
+    All ICMP IPV4
 
 -VIRTUALBOX  
 CentOS Linux release 7.6.1810 (Core)  
