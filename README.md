@@ -8,31 +8,14 @@ Follow aws-ec2*-userdata for the build (auto)
 Load Balancer solution: Nginx Ingress Controller  
 Default vpc  
 Public ip  
-![Security Group for master node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-master.PNG)
 Security Group for master node  
-  -Inbound:  
-    TCP 6443  
-    TCP 443  
-    TCP 2379-2380  
-    UDP 8285  
-    UDP 8472  
-![Security Group for worker node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-worker.PNG)
+![Security Group for master node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-master.PNG)
+
 Security Group for worker node  
-  -Inbound  
-    TCP 30000-32767  
-    TCP 10250  
-    TCP 10255  
-    TCP 179  
-    TCP 2379-2380  
-    UDP 8285  
-    UDP 8472  
-    TCP 80 (For Nginx Ingress)  
-    TCP 443 (For Nginx Ingress)  
+![Security Group for worker node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-worker.PNG)
 
 Security Group for general admin  
-  -Inbound  
-    TCP 22  
-    All ICMP IPV4  
+![Security Group for server admin](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-serveradmin.PNG)
 
 Load Balancer solution: AWS ELB  
 default vpc  
