@@ -23,13 +23,15 @@ Security Group for worker node
     TCP 10255  
     TCP 179  
     TCP 2379-2380  
+    UDP 8285  
+    UDP 8472  
     TCP 80 (For Nginx Ingress)  
     TCP 443 (For Nginx Ingress)  
 
-Security Group for general admin
-  -Inbound
-    TCP 22
-    All ICMP IPV4
+Security Group for general admin  
+  -Inbound  
+    TCP 22  
+    All ICMP IPV4  
 
 Load Balancer solution: AWS ELB  
 default vpc  
@@ -55,10 +57,10 @@ Security Group for ELB
   Inbound:  
     -tcp 80 anywhere  
 
-Security Group for general admin
-  -Inbound
-    TCP 22
-    All ICMP IPV4
+Security Group for general admin  
+  -Inbound  
+    TCP 22  
+    All ICMP IPV4  
 
 -VIRTUALBOX  
 CentOS Linux release 7.6.1810 (Core)  
