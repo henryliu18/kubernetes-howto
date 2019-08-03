@@ -8,6 +8,7 @@ Follow aws-ec2*-userdata for the build (auto)
 Load Balancer solution: Nginx Ingress Controller  
 Default vpc  
 Public ip  
+![https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-master.PNG]
 Security Group for master node  
   -Inbound:  
     TCP 6443  
