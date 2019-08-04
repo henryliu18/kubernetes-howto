@@ -50,6 +50,7 @@ echo \"alias knod='kubectl get node -o wide'\" | sudo tee -a ~/.bashrc && \
 echo \"alias klog='kubectl logs'\" | sudo tee -a ~/.bashrc && \
 echo \"alias kexe='kubectl exec'\" | sudo tee -a ~/.bashrc && \
 echo \"alias kdep='kubectl get deployment -o wide --all-namespaces'\" | sudo tee -a ~/.bashrc && \
+echo \"alias gettoken='kubectl describe -n kube-system secret/$(kubectl -n kube-system get secret | grep kubernetes-dashboard-token|cut -d" " -f1)'\" | sudo tee -a ~/.bashrc && \
 
 #Install helm - The Kubernetes Package Manager
 sleep 30 && \
