@@ -48,13 +48,13 @@ defaultBackend:
         effect: NoSchedule
       - key: node-role.kubernetes.io/master
         operator: Exists
-        effect: PreferNoSchedule" | tee -a /tmp/ingress-nginx.yaml && \
+        effect: PreferNoSchedule" | tee -a ingress-nginx.yaml && \
 #Step 4: Update helm repo
 sudo helm repo update && \
 #Step 5: Install Nginx-Ingress using helm - namespace nginx-ingress
 sudo helm install stable/nginx-ingress \
 -n nginx-ingress \
 --namespace ingress-nginx  \
--f /tmp/ingress-nginx.yaml
+-f ingress-nginx.yaml
 echo "Node: ${edge_nodename} is labeled as edge and has nginx-ingress deployed to it"
 #END
