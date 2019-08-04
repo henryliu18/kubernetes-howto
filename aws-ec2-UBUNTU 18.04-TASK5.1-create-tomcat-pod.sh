@@ -30,7 +30,7 @@ spec:
       - path: /
         backend:
           serviceName: tomcat-server
-          servicePort: 8080" | tee -a tomcat-ingress.yaml && \
+          servicePort: 80" | tee -a tomcat-ingress.yaml && \
 kubectl apply -f tomcat-ingress.yaml
 
 #print messages of DNS record changes
