@@ -13,7 +13,7 @@ done
 #Step 2: Deploy a simple Tomcat pod with service tomcat-server exposed to ClusterIP
 kubectl run tomcat --generator=run-pod/v1 --image=tomcat:alpine --port=8080 --replicas=1 && \
 kubectl expose pod tomcat --type=ClusterIP --name=tomcat-server && \
-#Step 4: Set Ingress rules which route the http traffics of defined host to the backend service
+#Step 3: Set Ingress rules which route the http traffics of defined host to the backend service
 echo -e "apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

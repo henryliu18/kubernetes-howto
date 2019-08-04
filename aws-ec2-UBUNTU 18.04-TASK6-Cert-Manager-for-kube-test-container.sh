@@ -44,14 +44,14 @@ echo -e "apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: kube-test-container-ingress
-  annotations: #add
-    kubernetes.io/ingress.class: nginx #add
-    certmanager.k8s.io/cluster-issuer: letsencrypt-staging #add
+  annotations:                                             #new
+    kubernetes.io/ingress.class: nginx                     #new
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging #new cluster-issuer staging
 spec:
   tls:
   - hosts:
     - test.${yourdomain}
-    secretName: letsencrypt-staging #add
+    secretName: letsencrypt-staging                        #new secret name staging
   rules:
   - host: test.${yourdomain}
     http:
@@ -62,7 +62,7 @@ spec:
           servicePort: 80" | tee -a kube-test-container-ingress-stg.yaml
 kubectl apply -f kube-test-container-ingress-stg.yaml
 #Verify staging ingress and cert status
-kubectl describe ingress     #Normal  UpdateCertificate  7s                cert-manager              Successfully updated Certificate "letsencrypt-staging"
+kubectl describe ingress     #Successfully updated Certificate "letsencrypt-staging"
 kubectl describe certificate #Certificate issued successfully
 #Prod issuer
 echo -e "apiVersion: certmanager.k8s.io/v1alpha1
