@@ -8,7 +8,7 @@
 #Install helm
 
 default_user='ubuntu'
-int_ip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
+int_ip=`curl "http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip" -H "Metadata-Flavor: Google"`
 
 sudo apt-get update -y && \
 sudo apt install docker.io -y && \
