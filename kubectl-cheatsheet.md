@@ -1,7 +1,12 @@
+#dry run  
+kubectl create deploy nginx --image nginx --dry-run -o yaml  
+
+#run a pod
 kubectl run centos --generator=run-pod/v1 --image=centos --replicas=1 --command -- sleep infinity  
 kubectl run busybox --generator=run-pod/v1 --image=busybox --replicas=1 --command -- sleep infinity  
 kubectl run ubuntu --generator=run-pod/v1 --image=ubuntu --replicas=1 --command -- sleep infinity  
 
+#expose ClusterIP
 kubectl run tomcat --generator=run-pod/v1 --image=tomcat:alpine --port=8080 --replicas=1  
 kubectl expose pod tomcat --type=ClusterIP --name=tomcat-server  
 
