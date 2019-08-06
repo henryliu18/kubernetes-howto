@@ -84,7 +84,7 @@ kind: ClusterConfiguration
 kubernetesVersion: v1.15.0
 networking:
   podSubnet: 10.244.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
-sudo kubeadm init --config /tmp/kubeadm.yaml >> ${LOGFILE} && \
+sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU >> ${LOGFILE} && \
 sleep 30 && \
 
 #how a regular user access kubectl
