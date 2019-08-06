@@ -1,14 +1,23 @@
 #!/bin/bash
 
-#variables
-THIS_NODE_HOST=k8snode1
+#run as root/CentOS 7.6/K8S worker ndoe
+echo Hostname:
+read THIS_NODE_HOST
+echo IP address:
+read THIS_NODE_IP
+echo MASTER IP address:
+read MAS_NODE_IP
+echo JOIN command:
+read JOINCMD
+
+#set hostname and sync /etc/hosts
+sudo hostnamectl set-hostname ${THIS_NODE_HOST}
+sudo scp root@$MAS_NODE_IP:/etc/hosts /etc/hosts
+echo -e "${THIS_NODE_IP} ${THIS_NODE_HOST}" | sudo tee -a /etc/hosts
+sudo scp /etc/hosts root@$MAS_NODE_IP:/etc/hosts
 
 #install required tools
 sudo yum install yum-utils device-mapper-persistent-data lvm2 ipset ipvsadm git xorg-x11-xauth -y
-
-#hostname
-sudo hostnamectl set-hostname ${THIS_NODE_HOST} && \
-sudo cat hosts >> /etc/hosts
 
 #firewalld
 sudo systemctl stop firewalld && \
@@ -62,3 +71,7 @@ sudo sed -i '/ swap / s/^/#/' /etc/fstab
 
 #start kubelet
 sudo systemctl enable kubelet.service
+sleep 30
+
+#join cluster
+sudo bash -c "$JOINCMD"
