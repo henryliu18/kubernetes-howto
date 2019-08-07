@@ -1,3 +1,6 @@
+![Kubernetes architecture](https://github.com/henryliu18/kubernetes-poc/raw/master/images/Kubernetes-architecture.PNG)
+
+
 -AWS EC2  
 Ubuntu 18.04  
 Kubernetes version: v1.15.0
@@ -9,13 +12,13 @@ Load Balancer solution: Nginx Ingress Controller
 Default vpc  
 Public ip  
 Security Group for master node  
-![Security Group for master node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-master.PNG)
+![Security Group for master node](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-master.PNG)
 
 Security Group for worker node  
-![Security Group for worker node](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-worker.PNG)
+![Security Group for worker node](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-worker.PNG)
 
 Security Group for general admin  
-![Security Group for server admin](https://github.com/henryliu18/kubernetes-poc/raw/master/security-group-serveradmin.PNG)
+![Security Group for server admin](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-serveradmin.PNG)
 
 Load Balancer solution: AWS ELB  
 default vpc  
