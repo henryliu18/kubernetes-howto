@@ -3,6 +3,13 @@
 #Create Nginx container consuming pvc as html home /usr/share/nginx/html
 
 #BEGIN
+#Step 1: Set a valid domain name to demonstrate how Nginx-Ingress controller handles HTTPS requests, e.g. xyz.com
+yourdomain=''
+until [ "${yourdomain}" != '' ]; do
+        echo 'enter domain name:'
+        read yourdomain
+done
+
 echo -e "apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -50,10 +57,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - pvtest.birdgg.com
-    secretName: pvtest-birdgg-secret
+    - pvtest.${yourdomain}
+    secretName: pvtest-${yourdomain}-secret
   rules:
-  - host: pvtest.birdgg.com
+  - host: pvtest.${yourdomain}
     http:
       paths:
       - path: /
