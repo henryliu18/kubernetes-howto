@@ -61,3 +61,17 @@ Worker node -> virtualbox-centos7.6-manual-worker.sh
 
 Dashboard UI URL  
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/  
+
+[Troubleshooting dns not resolving]  
+- Firewall/Security group port blocked  
+- Multiple NICs causing CNI confused - solution -> specify a servicing NIC in yaml file  
+E.g.  
+containers:  
+      - name: kube-flannel  
+        image: quay.io/coreos/flannel:v0.11.0-amd64  
+        command:  
+        - /opt/bin/flanneld  
+        args:  
+        - --ip-masq  
+        - --kube-subnet-mgr  
+        - --iface=eth1  #replacing servicing NIC with eth1  
