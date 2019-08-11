@@ -74,4 +74,4 @@ containers:
         args:  
         - --ip-masq  
         - --kube-subnet-mgr  
-        - --iface=eth1  #replacing servicing NIC with eth1  
+        - --iface=eth1  #replacing eth1 with servicing NIC name  
