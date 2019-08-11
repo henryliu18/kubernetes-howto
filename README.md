@@ -63,7 +63,7 @@ Dashboard UI URL
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/  
 
 [Troubleshooting dns not resolving]  
-- Firewall/Security group port blocked  
+- Ports blocking - check Firewall/Security group  
 - Multiple NICs causing CNI confused - solution -> specify a servicing NIC in yaml file  
 E.g.  
 containers:  
