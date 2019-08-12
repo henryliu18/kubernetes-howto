@@ -1,0 +1,23 @@
+#Deployment/hostname/command/args
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: centoslabel
+  name: centos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: centoslabel
+  template:
+    metadata:
+      labels:
+        run: centoslabel
+    spec:
+      hostname: dbserv1
+      containers:
+      - image: centos
+        name: centos-name
+        command: ["sleep"]
+        args: ["infinity"]
