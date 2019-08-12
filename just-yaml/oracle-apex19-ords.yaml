@@ -1,0 +1,77 @@
+#Deployment/hostname/env variable
+#Service
+#Part 1: apex19
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: apex19
+  name: apex19
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: apex19
+  template:
+    metadata:
+      labels:
+        run: apex19
+    spec:
+      hostname: dbserv1
+      containers:
+      - image: henryhhl18/apex19-container
+        name: apex19
+        ports:
+        - containerPort: 1521
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dbserv1
+spec:
+  ports:
+  - port: 1521
+    protocol: TCP
+    targetPort: 1521
+  selector:
+    run: apex19
+  type: ClusterIP
+---
+#Part 2: ords
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: ords
+  name: ords
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: ords
+  template:
+    metadata:
+      labels:
+        run: ords
+    spec:
+      hostname: webserv1
+      containers:
+      - image: henryhhl18/ords-container
+        name: ords
+        ports:
+        - containerPort: 8080
+        command: ['/bin/bash', '-c', 'sleep 100s; /bin/bash /tmp/startup-ords']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ords-service-fe
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: ords
+  type: NodePort
+  
