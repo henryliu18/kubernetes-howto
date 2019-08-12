@@ -15,7 +15,7 @@ spec:
       labels:
         run: centoslabel
     spec:
-      hostname: dbserv1
+      hostname: centos-host1
       containers:
       - image: centos
         name: centos-name
