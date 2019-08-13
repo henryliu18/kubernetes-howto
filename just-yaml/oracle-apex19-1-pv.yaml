@@ -1,0 +1,43 @@
+#sc - local-storage-pv2
+#pv - 10Gi|local-storage-pv2|/home/pv2|k8snode2
+#pvc - pvc2|local-storage-pv2|10Gi
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-storage-pv2
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv2-k8snode2
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage-pv2
+  local:
+    path: /home/pv2
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - k8snode2
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc2
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-storage-pv2
+  resources:
+    requests:
+      storage: 10Gi

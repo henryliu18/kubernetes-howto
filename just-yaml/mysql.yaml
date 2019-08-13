@@ -2,25 +2,25 @@
 #PersistentVolume/local/nodeSelectorTerms
 #PersistentVolumeClaim
 #Deployment/hostname/volumeMounts/env variable/persistentVolumeClaim
-#Service
+#Service/mysql-service
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: local-storage
+  name: local-storage-mysql-demo
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: local-pv-home-pv1
+  name: local-k8snode2-pv1
 spec:
   capacity:
     storage: 5Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
+  storageClassName: local-storage-mysql-demo
   local:
     path: /home/pv1
   nodeAffinity:
@@ -30,16 +30,16 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - k8snode1
+          - k8snode2
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc1
+  name: pvc1-for-mysql
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: local-storage
+  storageClassName: local-storage-mysql-demo
   resources:
     requests:
       storage: 1Gi
@@ -67,15 +67,15 @@ spec:
         ports:
         - containerPort: 3306
         volumeMounts:
-        - mountPath: \"/var/lib/mysql\"
+        - mountPath: /var/lib/mysql
           name: storage
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: \"my-secret-pw\"
+          value: my-secret-pw
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: pvc1
+            claimName: pvc1-for-mysql
 ---
 apiVersion: v1
 kind: Service
