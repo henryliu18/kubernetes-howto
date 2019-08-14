@@ -1,9 +1,9 @@
 #COPYDB-JOB.yaml
 #Description
 # This job is a one-off task to copy db files from container filesystem
-# to a persistent volume externally.  Passing in COPYDB=/pv2 to specify
-# where db files to copy to, container claims pvc2 and mounts to /pv2
-# for holding db files.
+# to a persistent volume externally.  Passing in COPYDBFROM and COPYDBTO
+# to specify where db files to copy from/to, container will claim pvc2 
+# and mount to /pv2 for holding db files.
 #
 apiVersion: batch/v1
 kind: Job
@@ -16,9 +16,11 @@ spec:
       - name: apex19
         image: henryhhl18/apex19-container
         env:
-        - name: COPYDB
+        - name: COPYDBFROM
+          value: "/u02"
+        - name: COPYDBTO
           value: "/pv2"
-        command: ["/bin/bash", "-c", "cd /u02; tar cf - * | ( cd ${COPYDB}; tar xfp -)"]
+        command: ["/bin/bash", "-c", "cd ${COPYDBFROM}; tar cf - * | ( cd ${COPYDB}; tar xfp -)"]
         volumeMounts:
         - mountPath: /pv2
           name: storage-u02
