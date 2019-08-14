@@ -1,6 +1,6 @@
 #COPYDB-JOB.yaml
 #Description
-# This job is a onc-off task to copy db files from container filesystem
+# This job is a one-off task to copy db files from container filesystem
 # to a persistent volume externally.  Passing in COPYDB=/pv2 to specify
 # where db files to copy to, container claims pvc2 and mounts to /pv2
 # for holding db files.
