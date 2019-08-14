@@ -1,6 +1,9 @@
-#Deployment/hostname/env variable
-#Service
-#Part 1: apex19
+#APEX-PROD.yaml
+#Description
+# This pod claims and mounts pvc2 to /u02 where db files originally built and
+# bring up Oracle db instance, expose dbserv1:1521 for ords container to
+# access.
+#
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -43,42 +46,3 @@ spec:
   selector:
     run: apex19
   type: ClusterIP
----
-#Part 2: ords
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  labels:
-    run: ords
-  name: ords
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      run: ords
-  template:
-    metadata:
-      labels:
-        run: ords
-    spec:
-      hostname: webserv1
-      containers:
-      - image: henryhhl18/ords-container
-        name: ords
-        ports:
-        - containerPort: 8080
-        command: ['/bin/bash', '-c', 'sleep 100s; /bin/bash /tmp/startup-ords']
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ords-service-fe
-spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    run: ords
-  type: NodePort
-  

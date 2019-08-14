@@ -1,6 +1,8 @@
-#sc - local-storage-pv2
-#pv - 10Gi|local-storage-pv2|/home/pv2|k8snode2
-#pvc - pvc2|local-storage-pv2|10Gi
+#APEX-PERSISTENT-VOLUME.yaml
+#Description
+# A local directory /home/pv2 on k8snode2 is created to present a persistent volume
+# A persistent volume claim pvc2 is created to hold db file persistently
+# storage class local-storage-pv2 is created for pv and pvc
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
@@ -14,7 +16,7 @@ metadata:
   name: local-pv2-k8snode2
 spec:
   capacity:
-    storage: 10Gi
+    storage: 20Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
@@ -40,4 +42,4 @@ spec:
   storageClassName: local-storage-pv2
   resources:
     requests:
-      storage: 10Gi
+      storage: 20Gi

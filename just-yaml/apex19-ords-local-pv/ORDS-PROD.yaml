@@ -1,0 +1,42 @@
+#ORDS-PROD.yaml
+#Description
+# ORDS is deployed to a Tomcat container, exposed port 8080 to the world.
+# ORDS requires to connect to Oracle Apex19 DB so make sure that is ready
+# before running ORDS container.  http://NodeIP:8080/ords
+#
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: ords
+  name: ords
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: ords
+  template:
+    metadata:
+      labels:
+        run: ords
+    spec:
+      hostname: webserv1
+      containers:
+      - image: henryhhl18/ords-container
+        name: ords
+        ports:
+        - containerPort: 8080
+        command: ['/bin/bash', '-c', 'sleep 60s; /bin/bash /tmp/startup-ords']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ords-service-fe
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: ords
+  type: NodePort

@@ -1,0 +1,30 @@
+#COPYDB-JOB.yaml
+#Description
+# This job is a onc-off task to copy db files from container filesystem
+# to a persistent volume externally.  Passing in COPYDB=/pv2 to specify
+# where db files to copy to, container claims pvc2 and mounts to /pv2
+# for holding db files.
+#
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: copydb
+spec:
+  template:
+    spec:
+      containers:
+      - name: apex19
+        image: henryhhl18/apex19-container
+        env:
+        - name: COPYDB
+          value: "/pv2"
+        command: ["/bin/bash", "-c", "cd /u02; tar cf - * | ( cd ${COPYDB}; tar xfp -)"]
+        volumeMounts:
+        - mountPath: /pv2
+          name: storage-u02
+      volumes:
+        - name: storage-u02
+          persistentVolumeClaim:
+            claimName: pvc2
+      restartPolicy: Never
+  backoffLimit: 1

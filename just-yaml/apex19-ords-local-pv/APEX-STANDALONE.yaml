@@ -1,5 +1,9 @@
-#Deployment/hostname/env variable
-#Service/NodePort
+#APEX-STANDALONE.yaml
+#Description
+# Apex19 will run locally on ephemeral container filesystem
+# port 8080 is exposed for service - http://NodeIP:8080/apex
+# this is for testing purpse
+#
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -29,7 +33,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: apex-service
+  name: apex19-service-8080
 spec:
   ports:
   - port: 8080
