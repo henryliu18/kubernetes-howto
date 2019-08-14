@@ -20,7 +20,7 @@ spec:
           value: "/u02"
         - name: COPYDBTO
           value: "/pv2"
-        command: ["/bin/bash", "-c", "cd ${COPYDBFROM}; tar cf - * | ( cd ${COPYDB}; tar xfp -)"]
+        command: ["/bin/bash", "-c", "cd ${COPYDBFROM}; tar cf - * | ( cd ${COPYDBTO}; tar xfp -)"]
         volumeMounts:
         - mountPath: /pv2
           name: storage-u02
