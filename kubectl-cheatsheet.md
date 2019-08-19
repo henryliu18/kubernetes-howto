@@ -16,6 +16,7 @@ kubectl create deploy nginx --image nginx --dry-run -o yaml
 kubectl run centos --generator=run-pod/v1 --image=centos --replicas=1 --command -- sleep infinity  
 kubectl run busybox --generator=run-pod/v1 --image=busybox --replicas=1 --command -- sleep infinity  
 kubectl run ubuntu --generator=run-pod/v1 --image=ubuntu --replicas=1 --command -- sleep infinity  
+kubectl run henrytoolbox --generator=run-pod/v1 --image=henryhhl18/toolbox --replicas=1 --command -- sleep 30000d
 
 #expose ClusterIP  
 kubectl run tomcat --generator=run-pod/v1 --image=tomcat:alpine --port=8080 --replicas=1  
