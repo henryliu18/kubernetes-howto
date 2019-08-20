@@ -1,3 +1,4 @@
+cat <<EOF | kubectl apply -f -
 #StorageClass
 #PersistentVolume/local/nodeSelectorTerms
 #PersistentVolumeClaim
@@ -92,3 +93,4 @@ spec:
     app: mysql
 status:
   loadBalancer: {}
+EOF
