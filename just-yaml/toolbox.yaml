@@ -1,3 +1,4 @@
+cat <<EOF | kubectl apply -f -
 #Deployment/hostname/command/args
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -21,3 +22,4 @@ spec:
         name: toolbox
         command: ["sleep"]
         args: ["30000d"]
+EOF
