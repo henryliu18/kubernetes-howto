@@ -6,23 +6,23 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: local-storage-pv2
+  name: local
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: local-pv2-k8snode2
+  name: local-apex19-db
 spec:
   capacity:
     storage: 20Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage-pv2
+  storageClassName: local
   local:
-    path: /home/pv2
+    path: /db
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -30,16 +30,16 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - k8snode2
+          - w2
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc2
+  name: pvc-apex19-db
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: local-storage-pv2
+  storageClassName: local
   resources:
     requests:
       storage: 20Gi

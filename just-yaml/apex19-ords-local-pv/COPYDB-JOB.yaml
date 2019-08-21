@@ -19,14 +19,15 @@ spec:
         - name: COPYDBFROM
           value: "/u02"
         - name: COPYDBTO
-          value: "/pv2"
-        command: ["/bin/bash", "-c", "cd ${COPYDBFROM}; tar cf - * | ( cd ${COPYDBTO}; tar xfp -)"]
+          value: "/db"
+        command: ["/bin/bash"]
+        args: ["-c","cd $(COPYDBFROM);tar cf - * | ( cd $(COPYDBTO); tar xfp -)"]
         volumeMounts:
-        - mountPath: /pv2
+        - mountPath: /db
           name: storage-u02
       volumes:
         - name: storage-u02
           persistentVolumeClaim:
-            claimName: pvc2
+            claimName: pvc-apex19-db
       restartPolicy: Never
   backoffLimit: 1

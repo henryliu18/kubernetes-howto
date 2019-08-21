@@ -32,7 +32,7 @@ spec:
       volumes:
         - name: storage-u02
           persistentVolumeClaim:
-            claimName: pvc2
+            claimName: pvc-apex19-db
 ---
 apiVersion: v1
 kind: Service
