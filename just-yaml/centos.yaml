@@ -1,4 +1,3 @@
-cat <<EOF | kubectl apply -f -
 #Deployment/hostname/command/args
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -22,4 +21,3 @@ spec:
         name: centos-name
         command: ["sleep"]
         args: ["infinity"]
-EOF
