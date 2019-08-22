@@ -1,9 +1,9 @@
 #get  
-```kubectl get cs```
-```kubectl get node```
-```kubectl get pod```
-```kubectl get svc```
-```kubectl get ingress```
+- ```kubectl get cs```
+- ```kubectl get node```
+- ```kubectl get pod```
+- ```kubectl get svc```
+- ```kubectl get ingress```
 
 kubectl get pod -n kube-system  
 
