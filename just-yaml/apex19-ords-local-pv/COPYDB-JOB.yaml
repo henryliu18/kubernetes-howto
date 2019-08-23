@@ -19,11 +19,11 @@ spec:
         - name: COPYDBFROM
           value: "/u02"
         - name: COPYDBTO
-          value: "/db"
+          value: "/pvc_mount_point"
         command: ["/bin/bash"]
         args: ["-c","cd $(COPYDBFROM);tar cf - * | ( cd $(COPYDBTO); tar xfp -)"]
         volumeMounts:
-        - mountPath: /db
+        - mountPath: /pvc_mount_point
           name: storage-u02
       volumes:
         - name: storage-u02

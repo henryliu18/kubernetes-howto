@@ -4,7 +4,7 @@ Deploy Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database file
 
 Apply sequences
 
-- create local directory for pv
+- create a local directory on a worker node for pv local-apex19-db
   - APEX-PERSISTENT-VOLUME.yaml
 - COPYDB-JOB.yaml
 - APEX-PROD.yaml

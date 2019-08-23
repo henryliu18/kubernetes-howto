@@ -22,7 +22,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local
   local:
-    path: /db
+    path: /db             #CHANGE THIS IF NECESSARY
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -30,7 +30,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - w2
+          - w2            #CHANGE THIS IF NECESSARY
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
