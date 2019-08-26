@@ -2,7 +2,7 @@
 ```
 sudo curl -O https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz && \
 sudo tar -zxvf helm-v2.14.1-linux-amd64.tar.gz && \
-sudo cp linux-amd64/helm /usr/local/bin/ &&
+sudo cp linux-amd64/helm /usr/local/bin/
 ```
 # ServiceAccount and ClusterRoleBinding
 ```
