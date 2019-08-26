@@ -15,6 +15,7 @@ done
 ```
 # Tomcat web server deployment/svc/ingress
 ```
+cat <<EOF | kubectl apply -f -
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -67,6 +68,7 @@ spec:
         backend:
           serviceName: tomcat-service
           servicePort: 80
+EOF
 ```
 # Install cert-manager
 ```
