@@ -1,6 +1,4 @@
-#README.md
-
-Deploy Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are going to be stored on a local directory that is defined as a persistent volume in Kubernetes
+# Deploy Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on a local directory that is defined as a persistent volume in Kubernetes
 
 Apply sequences
 

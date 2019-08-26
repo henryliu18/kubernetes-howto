@@ -1,3 +1,5 @@
+# Dashboard is a web-based Kubernetes user interface
+
 # Set a valid domain name to be signed TLS certificate and handled by nginx-ingress
 ```
 unset fqdn

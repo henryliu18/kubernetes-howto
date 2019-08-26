@@ -1,3 +1,5 @@
+# The Ingress is a Kubernetes resource that lets you configure an HTTP load balancer for applications running on Kubernetes, represented by one or more Services. Such a load balancer is necessary to deliver those applications to clients outside of the Kubernetes cluster.
+
 # Nominate a worker node to be labelled edge for ingress control node, this will make the node as internet facing node
 ```
 until [ "${edge_nodename}" != '' ]; do
