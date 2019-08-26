@@ -1,7 +1,8 @@
 # MySQL db server uses persistent volume for database
 
 # Create a local directory on a worker node
-```mkdir /home/pv1```
+```sudo mkdir /home/pv1```
+```sudo chmod 777 /home/pv1```
 # Create StorageClass, PersistentVolume and PersistentVolumeClaim
 ```
 cat <<EOF | kubectl create -f -
