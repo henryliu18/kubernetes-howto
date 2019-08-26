@@ -48,4 +48,5 @@ defaultBackend:
       - key: node-role.kubernetes.io/master
         operator: Exists
         effect: PreferNoSchedule
+EOF
 ```
