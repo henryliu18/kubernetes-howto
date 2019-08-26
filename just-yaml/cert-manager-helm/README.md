@@ -124,8 +124,12 @@ spec:
 EOF
 ```
 # Verify staging ingress and cert status
-```kubectl describe ingress```
-```kubectl describe certificate```
+```
+kubectl describe ingress
+```
+```
+kubectl describe certificate
+```
 # Prod issuer
 ```
 cat <<EOF | kubectl create -f -
@@ -172,5 +176,9 @@ spec:
 EOF
 ```
 # Verification
-```kubectl describe ingress tomcat-ingress```
-```kubectl describe certificate letsencrypt-prod```
+```
+kubectl describe ingress tomcat-ingress
+```
+```
+kubectl describe certificate letsencrypt-prod
+```
