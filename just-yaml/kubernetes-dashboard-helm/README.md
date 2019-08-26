@@ -32,7 +32,7 @@ tolerations:
       operator: Exists
       effect: PreferNoSchedule
 rbac:
-  clusterAdminRole: true" | tee -a /tmp/kubernetes-dashboard.yaml
+  clusterAdminRole: true" | tee /tmp/kubernetes-dashboard.yaml
 ```
 # Install stable/kubernetes-dashboard
 ```helm install stable/kubernetes-dashboard -n kubernetes-dashboard --namespace kube-system -f /tmp/kubernetes-dashboard.yaml```
