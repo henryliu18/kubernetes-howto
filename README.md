@@ -1,4 +1,4 @@
-![Kubernetes architecture](https://github.com/henryliu18/kubernetes-poc/raw/master/images/Kubernetes-architecture.PNG)
+![Kubernetes architecture](https://upload.wikimedia.org/wikipedia/commons/b/be/Kubernetes.png)
 
 
 -AWS EC2  
