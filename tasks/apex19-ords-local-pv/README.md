@@ -212,3 +212,20 @@ spec:
   type: NodePort
 EOF
 ```
+- clean up
+```
+kubectl delete job.batch/copydb service/ords-service-fe \
+service/dbserv1 \
+deployment.extensions/ords \
+deployment.extensions/apex19 \
+storageclass.storage.k8s.io/local \
+persistentvolumeclaim/pvc-apex19-db \
+persistentvolume/local-apex19-db
+```
+- Deployment dependencies control
+```
+#!/bin/bash
+kubectl apply -f APEX-PROD.yaml
+while [[ $(kubectl get pods -l run=apex19 -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for pod" && sleep 1; done
+kubectl apply -f ORDS-PROD.yaml
+```
