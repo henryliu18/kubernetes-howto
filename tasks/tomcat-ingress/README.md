@@ -1,4 +1,5 @@
 # Deploy a Tomcat with Nginx-ingress
+## Apply
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: extensions/v1beta1
@@ -49,4 +50,11 @@ spec:
           serviceName: tomcat-service
           servicePort: 80
 EOF
+```
+
+## Clean up
+```
+kubectl delete ing tomcat-ingress
+kubectl delete svc tomcat-service
+kubectl delete deployment tomcat-demo
 ```
