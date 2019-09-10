@@ -1,17 +1,17 @@
 # The Ingress is a Kubernetes resource that lets you configure an HTTP load balancer for applications running on Kubernetes, represented by one or more Services. Such a load balancer is necessary to deliver those applications to clients outside of the Kubernetes cluster.
 
-# Nominate a worker node to be labelled edge for ingress control node, this will make the node as internet facing node
+## Nominate a worker node to be labelled edge for ingress control node, this will make the node as internet facing node
 ```
 until [ "${edge_nodename}" != '' ]; do
         echo 'enter edge node name:'
         read edge_nodename
 done
 ```
-# Label edge to a selected worker node
+## Label edge to a selected worker node
 ```sudo kubectl label node ${edge_nodename} node-role.kubernetes.io/edge=```
-# Update helm repo
+## Update helm repo
 ```helm repo update```
-# Create yaml for Nginx Ingress Controller
+## Create yaml for Nginx Ingress Controller
 ```
 cat <<EOF | helm install stable/nginx-ingress -n nginx-ingress --namespace ingress-nginx -f -
 controller:
@@ -52,3 +52,5 @@ defaultBackend:
         effect: PreferNoSchedule
 EOF
 ```
+## Clean up
+```helm del nginx-ingress --purge```
