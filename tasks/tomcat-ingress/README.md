@@ -1,4 +1,4 @@
-# Deploy a Tomcat with Nginx-ingress
+# Deploy Tomcat webserver with Nginx-ingress
 ## Apply
 ```
 cat <<EOF | kubectl apply -f -
@@ -51,6 +51,8 @@ spec:
           servicePort: 80
 EOF
 ```
+## Status
+```kubectl get pod,svc,ing -o wide```
 
 ## Clean up
 ```
