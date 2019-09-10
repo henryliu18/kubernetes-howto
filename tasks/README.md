@@ -5,6 +5,7 @@ suggested sequence
 - toolbox => small container deployment
 - helm => The package manager for Kubernetes
 - ingress-control-helm => install nginx-ingress from helm
+- tomcat-ingress => deploy tomcat with nginx-ingress
 - kubernetes-dashboard-helm => install dashboard webui from helm
 - cert-manager-helm => install cert-manager from helm and sign a free cert of Let's encrypt to a Tomcat deployment
 - metallb => a bare metal load balancer solution
