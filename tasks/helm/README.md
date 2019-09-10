@@ -1,12 +1,12 @@
 # The package manager for Kubernetes
 
-# helm binaries
+## helm binaries
 ```
 sudo curl -O https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz && \
 sudo tar -zxvf helm-v2.14.1-linux-amd64.tar.gz && \
 sudo cp linux-amd64/helm /usr/local/bin/
 ```
-# ServiceAccount and ClusterRoleBinding
+## ServiceAccount and ClusterRoleBinding
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
@@ -29,5 +29,12 @@ subjects:
     namespace: kube-system
 EOF
 ```
-# helm init
+## helm init
 helm init --service-account tiller --skip-refresh
+
+## Clean up
+```
+kubectl -n kube-system delete deployment tiller-deploy
+kubectl delete clusterrolebinding tiller
+kubectl -n kube-system delete serviceaccount tiller
+```

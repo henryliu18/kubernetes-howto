@@ -107,13 +107,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: tomcat-ingress
-  annotations:                                             #new line added
+  annotations:
     kubernetes.io/ingress.class: nginx                     #new line added
     certmanager.k8s.io/cluster-issuer: letsencrypt-staging #new line added
 spec:
-  tls:
-  - hosts:
-    - ${fqdn}
+  tls:                                                     #new line added
+  - hosts:                                                 #new line added
+    - ${fqdn}                                              #new line added
     secretName: letsencrypt-staging                        #new line added
   rules:
   - host: ${fqdn}
