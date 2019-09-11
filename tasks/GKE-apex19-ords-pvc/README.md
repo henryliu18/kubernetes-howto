@@ -15,6 +15,40 @@ spec:
       storage: 20Gi
 EOF
 ```
+## Or using preexisiting Persistent Disks as PersistentVolumes
+```
+cat<<EOF | kubectl apply -f -
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-apex19-db
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: gke-your-first-cluster-pvc-8799b4fb-d456-11e9-8bde-42010a80001e
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-apex19-db
+spec:
+  # It's necessary to specify "" as the storageClassName
+  # so that the default storage class won't be used, see
+  # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
+  storageClassName: ""
+  volumeName: pv-apex19-db
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+EOF
+```
 ## create an one-time-job to copy datafiles from container fs to pvc-apex19-db
 ```
 echo -e 'apiVersion: batch/v1
