@@ -1,9 +1,9 @@
 # some tasks to perform
 
 suggested sequence
+- helm => The package manager for Kubernetes
 - prerequisite => env setup
 - toolbox => small container deployment
-- helm => The package manager for Kubernetes
 - ingress-control-helm => install nginx-ingress from helm
 - tomcat-ingress => deploy tomcat with nginx-ingress
 - kubernetes-dashboard-helm => install dashboard webui from helm
