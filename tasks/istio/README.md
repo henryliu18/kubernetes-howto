@@ -8,7 +8,7 @@
 ```istioctl verify-install```
 ## Install Istio-init from helm with tiller, 3 jobs to be run to init
 ```
-cd istio-1.3.1
+cd istio-*
 helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 ```
 ## Verify Istio-init installation
@@ -63,4 +63,4 @@ EOF
 ## Change from ClusterIP to LoadBalancer or NodePort to access Kiali outside the cluster
 ```kubectl edit svc kiali -n istio-system```
 ## Access Kiali Console
-http://<LoadBalancer-IP>:20001
+http://LoadBalancer-IP:20001
