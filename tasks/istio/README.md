@@ -10,7 +10,7 @@
 ```
 cd istio-*
 kubectl create namespace istio-system
-helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
+helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 ```
 ## Verify Istio-init installation
 ```watch kubectl get all -n istio-system```
@@ -40,10 +40,10 @@ EOF
 ```
 
 ## Install Istio from helm with tiller
-```helm template install/kubernetes/helm/istio --name istio --namespace istio-system | kubectl apply -f -```
+```helm install install/kubernetes/helm/istio --name istio --namespace istio-system```
 
 ## Enable some oberserability
-```helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True | kubectl apply -f -```
+```helm install install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True```
 
 ## Verify Istio
 ```watch kubectl get all -n istio-system```
