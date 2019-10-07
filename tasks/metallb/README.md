@@ -1,9 +1,28 @@
 # MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 
-# https://metallb.universe.tf/installation/
+## With helm (preferable)
+```helm install --name metallb stable/metallb```
+## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: metallb-config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 10.244.1.220-10.244.1.250              #gives MetalLB control over cluster IP range
+EOF
+```
+## https://metallb.universe.tf/installation/
 ```kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml```
 
-# https://metallb.universe.tf/configuration/#layer-2-configuration
+## https://metallb.universe.tf/configuration/#layer-2-configuration
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -20,7 +39,7 @@ data:
       - 10.244.1.220-10.244.1.250              #gives MetalLB control over cluster IP range
 EOF
 ```
-# Tomcat deployment using LoadBalancer
+## Tomcat deployment using LoadBalancer
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: extensions/v1beta1
