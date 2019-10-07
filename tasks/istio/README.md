@@ -9,15 +9,16 @@
 ## Install Istio-init from helm with tiller, 3 jobs to be run to init
 ```
 cd istio-*
-helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
+kubectl create namespace istio-system
+helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
 ```
 ## Verify Istio-init installation
 ```watch kubectl get all -n istio-system```
 
 ## Create a secret for Kiali
 ```
-KIALI_USERNAME=$(read -p 'Kiali Username: ' uval && echo -n $uval | base64)
-KIALI_PASSPHRASE=$(read -sp 'Kiali Passphrase: ' pval && echo -n $pval | base64)
+KIALI_USERNAME=$(echo -n admin | base64)
+KIALI_PASSPHRASE=$(echo -n pass | base64)
 ```
 ## specify Istio ns
 ```NAMESPACE=istio-system```
@@ -39,7 +40,11 @@ EOF
 ```
 
 ## Install Istio from helm with tiller
-```helm install install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True```
+```helm template install/kubernetes/helm/istio --name istio --namespace istio-system | kubectl apply -f -```
+
+## Enable some oberserability
+```helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True | kubectl apply -f -```
+
 ## Verify Istio
 ```watch kubectl get all -n istio-system```
 
