@@ -9,7 +9,6 @@
 ## Install Istio-init from helm with tiller, 3 jobs to be run to init
 ```
 cd istio-*
-kubectl create namespace istio-system
 helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
 ```
 ## Verify Istio-init installation
