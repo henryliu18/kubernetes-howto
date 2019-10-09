@@ -3,7 +3,6 @@
 suggested sequence
 - helm => The package manager for Kubernetes
 - metallb => a bare metal load balancer solution
-- prerequisite => env setup
 - istio => service mesh
 - toolbox => small container deployment
 - ingress-control-helm => install nginx-ingress from helm
