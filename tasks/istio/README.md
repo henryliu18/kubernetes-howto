@@ -69,3 +69,11 @@ EOF
 ```kubectl edit svc kiali -n istio-system```
 ## Access Kiali Console
 http://LoadBalancer-IP:20001
+
+## Cleanup
+```
+helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True | kubectl delete -f -
+helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl delete -f -
+kubectl delete namespace istio-system
+sudo rm -f /usr/local/bin/istioctl
+```
