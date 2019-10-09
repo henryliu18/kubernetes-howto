@@ -2,7 +2,7 @@
 ## Deployment of Tomcat server 2 replicas, Service on port 80 -> containerPort 8080 and Ingress rules of host to backend service
 ```
 cat <<EOF | kubectl apply -f -
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -37,7 +37,7 @@ spec:
     run: tomcat
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Ingress
 metadata:
   name: tomcat-ingress
