@@ -1,14 +1,14 @@
 # MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 
 ## With helm (preferable)
-```helm install --name metallb stable/metallb```
+```helm install --name metallb stable/metallb --namespace metallb-system```
 ## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: default
+  namespace: metallb-system
   name: metallb-config
 data:
   config: |
