@@ -37,10 +37,12 @@ Or below if you hit Error: error installing: the server could not find the reque
 ```
 helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
 ```
-
+## repo update
+```helm repo update```
 ## Clean up
 ```
 kubectl -n kube-system delete deployment tiller-deploy
 kubectl delete clusterrolebinding tiller
 kubectl -n kube-system delete serviceaccount tiller
+kubectl -n kube-system delete svc tiller-deploy
 ```
