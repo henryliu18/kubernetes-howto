@@ -81,9 +81,9 @@ nodeRegistration:
 ---
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
-kubernetesVersion: v1.15.0
+kubernetesVersion: v1.16.1
 networking:
-  podSubnet: 10.244.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
+  podSubnet: 192.168.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
 sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU >> ${LOGFILE} && \
 sleep 30 && \
 
@@ -93,7 +93,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config && \
 sudo chown $(id -u):$(id -g) $HOME/.kube/config && \
 
 #Deploy Pod network
-sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml && \
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml && \
 sleep 30 && \
 
 #install Google chrome
