@@ -1,4 +1,5 @@
 #Login/run as opc user
+#k8s 1.16.1 PodSubnet 192.168.0.0/16
 #output /home/opc/k8s.log
 
 #install required tools
