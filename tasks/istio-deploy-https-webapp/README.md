@@ -227,7 +227,7 @@ spec:
 ---
 EOF
 ```
-## Browse https://book.busyapi.com/productpage, ssl should work with a fake certificate
+## Browse https://${FQDN}/productpage, ssl should work with a fake certificate
 
 ## Issuer for prod
 ```
