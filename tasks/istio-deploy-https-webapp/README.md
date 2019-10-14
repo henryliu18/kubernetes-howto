@@ -81,7 +81,7 @@ helm install jetstack/cert-manager --version v0.10.1 --namespace cert-manager --
 ```
 
 ## Let’s get your external IP from the Istio ingress gateway
-kubectl get svc -n istio-system istio-ingressgateway
+```kubectl get svc -n istio-system istio-ingressgateway```
 
 ## Create A record for the webapp that points to istio-ingressgateway load balancer ip from the previous step
 
