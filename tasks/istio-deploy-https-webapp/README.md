@@ -26,8 +26,8 @@ FQDN=
 
 ## helm installation
 ```
-sudo curl -O https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz && \
-sudo tar -zxvf helm-v2.14.1-linux-amd64.tar.gz && \
+sudo curl -O https://get.helm.sh/helm-v2.15.0-rc.1-linux-amd64.tar.gz && \
+sudo tar -zxvf helm-v2.15.0-rc.1-linux-amd64.tar.gz && \
 sudo cp linux-amd64/helm /usr/local/bin/
 
 cat <<EOF | kubectl create -f -
