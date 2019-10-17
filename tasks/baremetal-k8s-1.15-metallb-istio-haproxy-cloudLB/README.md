@@ -436,7 +436,7 @@ frontend main
 #---------------------------------------------------------------------
 backend app-main
     balance roundrobin                                     #Balance algorithm
-    option httpchk HEAD / HTTP/1.1\r\nHost:\ localhost    #Check the server application is up and healty - 200 status code
+#    option httpchk HEAD / HTTP/1.1\r\nHost:\ localhost    #Check the server application is up and healty - 200 status code
     server node1 10.244.1.220:80 check
 ' | sudo tee -a /etc/haproxy/haproxy.cfg && \
 sudo systemctl start haproxy && \
