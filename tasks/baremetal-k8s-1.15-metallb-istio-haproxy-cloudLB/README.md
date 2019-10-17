@@ -216,6 +216,9 @@ data:
 EOF
 ```
 
+## Create crds for cert-manager
+```kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml```
+
 ## ISTIO-INIT
 ```
 helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.1.2/charts/
@@ -249,14 +252,16 @@ helm install istio.io/istio \
        --name istio \
        --namespace istio-system \
        --set gateways.istio-ingressgateway.sds.enabled=true \
+       --set global.k8sIngress.enabled=true \
+       --set global.k8sIngress.enableHttps=true \
+       --set global.k8sIngress.gatewayName=ingressgateway \
+       --set certmanager.enabled=true \
+       --set certmanager.email=henry.hhl@gmail.com \
        --set grafana.enabled=True \
        --set kiali.enabled=True
 ```
 
-## Create crds for cert-manager
-```kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml```
-
-## Cert-manager v0.10.1
+## Cert-manager v0.10.1 (to be deleted)
 ```
 kubectl create namespace cert-manager
 kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
