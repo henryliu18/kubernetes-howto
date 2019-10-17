@@ -76,7 +76,7 @@ sudo systemctl enable kubelet.service && \
 echo -e "apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: 10.128.0.31
+  advertiseAddress: 10.0.0.10
   bindPort: 6443
 nodeRegistration:
   taints:
@@ -88,7 +88,7 @@ kind: ClusterConfiguration
 kubernetesVersion: v1.15.3
 networking:
   podSubnet: 10.244.0.0/16" | sudo tee -a /tmp/kubeadm.yaml && \
-sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > /home/ubuntu/k8s.log && \
+sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > ~/k8s.log && \
 sleep 30 && \
 
 #how a regular user access kubectl
