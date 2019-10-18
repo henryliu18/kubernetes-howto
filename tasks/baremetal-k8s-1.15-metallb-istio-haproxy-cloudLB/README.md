@@ -474,8 +474,8 @@ total 8
 
 * Create a new Listener for HTTPS requests using certificate created above
 
-## Testing of SSL enabled a.com
-```curl https://a.com/```
+## Testing of SSL enabled a.com, -k allows curl to perform "insecure" SSL connections and transfers.
+```curl -k https://a.com/```
 
 ## Expose Kiali (optional), modify from type: ClusterIP to type: LoadBalancer or NodePort
 ```kubectl edit svc kiali -n istio-system```
