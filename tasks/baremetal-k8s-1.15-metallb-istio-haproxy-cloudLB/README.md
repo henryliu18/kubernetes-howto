@@ -464,13 +464,15 @@ sudo systemctl enable haproxy
 
 ```openssl req -x509 -sha256 -new -nodes -key rootCAKey.pem -days 3650 -out rootCACert.pem```
 
-* use rootCACert.pem for CA and SSL certificate and rootCAKey.pem for private key in LoadBalancer configuration
+* rootCACert.pem for CA and SSL certificate and rootCAKey.pem for private key to create certificate for cloud LB listener
 ```
 ls -l
 total 8
 -rw-r--r-- 1 root root 1391 Oct 18 05:02 rootCACert.pem
 -rw-r--r-- 1 root root 1675 Oct 18 05:01 rootCAKey.pem
 ```
+
+* Create a new Listener for HTTPS requests using certificate created above
 
 ## Testing of SSL enabled a.com
 ```curl https://a.com/```
