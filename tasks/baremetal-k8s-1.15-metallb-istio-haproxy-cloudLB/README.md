@@ -470,61 +470,17 @@ total 8
 -rw-r--r-- 1 root root 1675 Oct 18 05:01 rootCAKey.pem
 ```
 
-<!-- ## Environmental variables for creating certificate of Tomcat service
-```
-EMAIL=admin@email.com
-FQDN=a.com
-```
+## Expose Kiali (optional), modify from type: ClusterIP to type: LoadBalancer or NodePort
+```kubectl edit svc kiali -n istio-system```
 
-## Issuer for staging
+## Find out exposed endpoint and access Kiali console from browser
 ```
-cat <<EOF | kubectl apply -f -
-apiVersion: certmanager.k8s.io/v1alpha1
-kind: Issuer
-metadata:
-  name: letsencrypt-staging
-  namespace: istio-system
-spec:
-  acme:
-    email: ${EMAIL}
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      # Secret resource used to store the account's private key.
-      name: example-issuer-account-key
-    http01: {}
----
-EOF
+kubectl get pod -o wide -n istio-system | grep kiali
+kiali-7f84b859d7-rwf4h                   1/1     Running     3          20h     10.244.1.65   worker1   <none>           <none>
+
+kubectl get svc kiali -n istio-system
+NAME    TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
+kiali   LoadBalancer   10.101.233.246   10.244.1.221   20001:31983/TCP   19h
+
+http://public-ip-of-worker1:31983/kiali/console
 ```
-
-## Issuer status, expecting to see Status: True and Type: Ready
-```kubectl describe issuer/letsencrypt-staging -n istio-system```
-
-## Generating certificate
-```
-cat <<EOF | kubectl apply -f -
-apiVersion: certmanager.k8s.io/v1alpha1
-kind: Certificate
-metadata:
-  name: tomcat-certificate
-  namespace: istio-system
-spec:
-  secretName: tomcat-certificate
-  issuerRef:
-    name: letsencrypt-staging
-  commonName: ${FQDN}
-  dnsNames:
-  - ${FQDN}
-  acme:
-    config:
-    - http01:
-        ingressClass: istio
-      domains:
-      - ${FQDN}
----
-EOF
-```
-
-## status should turn to True from False in a few seconds or minutes
-```kubectl describe certificate/tomcat-certificate -n istio-system```
-
-##  -->
