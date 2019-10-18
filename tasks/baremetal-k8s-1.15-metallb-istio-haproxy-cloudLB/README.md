@@ -224,7 +224,7 @@ EOF
 
 ## ISTIO-INIT
 ```
-helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.1.2/charts/
+helm repo add istio.io https://storage.googleapis.com/istio-release/releases/1.3.3/charts/
 helm repo update
 helm install istio.io/istio-init --name istio-init --namespace istio-system
 ```
@@ -489,5 +489,5 @@ kubectl get svc kiali -n istio-system
 NAME    TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)           AGE
 kiali   LoadBalancer   10.101.233.246   10.244.1.221   20001:31983/TCP   19h
 
-http://public-ip-of-worker1:31983/kiali/console
+http://public-ip-of-worker1:31983/kiali/
 ```
