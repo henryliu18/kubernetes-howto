@@ -256,7 +256,7 @@ helm install istio.io/istio \
        --set global.k8sIngress.enableHttps=true \
        --set global.k8sIngress.gatewayName=ingressgateway \
        --set certmanager.enabled=true \
-       --set certmanager.email=henry.hhl@gmail.com \
+       --set certmanager.email=admin@corp.com \
        --set grafana.enabled=True \
        --set kiali.enabled=True
 ```
@@ -451,6 +451,24 @@ sudo systemctl enable haproxy
 
 ## Set up DNS A record for a.com -> public ip of haproxy node and test it
 ```http://a.com/```
+
+## Set up a cloud provider managed load balancer for serving all haproxy endpoints for Tomcat service
+
+## Enabling SSL for testing, you will need to create your own CA and Private key
+
+* Generate the private key of the root CA
+```openssl genrsa -out rootCAKey.pem 2048```
+
+* Generate the self-signed root CA certificate
+```openssl req -x509 -sha256 -new -nodes -key rootCAKey.pem -days 3650 -out rootCACert.pem```
+
+* use rootCACert.pem for CA and SSL certificate and rootCAKey.pem for private key in LoadBalancer configuration
+```
+ls -l
+total 8
+-rw-r--r-- 1 root root 1391 Oct 18 05:02 rootCACert.pem
+-rw-r--r-- 1 root root 1675 Oct 18 05:01 rootCAKey.pem
+```
 
 <!-- ## Environmental variables for creating certificate of Tomcat service
 ```
