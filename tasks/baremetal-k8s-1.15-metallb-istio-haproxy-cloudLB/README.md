@@ -457,9 +457,11 @@ sudo systemctl enable haproxy
 ## Enabling SSL for testing, you will need to create your own CA and Private key
 
 * Generate the private key of the root CA
+
 ```openssl genrsa -out rootCAKey.pem 2048```
 
 * Generate the self-signed root CA certificate
+
 ```openssl req -x509 -sha256 -new -nodes -key rootCAKey.pem -days 3650 -out rootCACert.pem```
 
 * use rootCACert.pem for CA and SSL certificate and rootCAKey.pem for private key in LoadBalancer configuration
