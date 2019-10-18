@@ -443,10 +443,16 @@ sudo systemctl enable haproxy
 ## Testing haproxy endpoint of Tomcat service from public ip
 ```http://<haproxy-node1-ip>/```
 
-## Set up DNS A record for a.com -> public ip of haproxy node and test it
-```http://a.com/```
-
 ## Set up a cloud provider managed load balancer for serving all haproxy endpoints for Tomcat service
+* Selecing all haproxy VMs for backends
+* Backend port is 80 (metallb load balancer servicing port)
+* Frontend Listener port is 80 for ingress traffic
+
+## Testing managed load balancer endpoint of Tomcat service
+```http://<cloud-load-balancer-public-ip>/```
+
+## Set up DNS A record for a.com -> cloud-load-balancer-public-ip and test it
+```http://a.com/```
 
 ## Enabling SSL for testing, you will need to create your own CA and Private key
 
