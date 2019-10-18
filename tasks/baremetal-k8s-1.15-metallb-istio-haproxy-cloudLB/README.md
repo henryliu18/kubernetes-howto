@@ -472,6 +472,9 @@ total 8
 -rw-r--r-- 1 root root 1675 Oct 18 05:01 rootCAKey.pem
 ```
 
+## Testing of SSL enabled a.com
+```curl https://a.com/```
+
 ## Expose Kiali (optional), modify from type: ClusterIP to type: LoadBalancer or NodePort
 ```kubectl edit svc kiali -n istio-system```
 
