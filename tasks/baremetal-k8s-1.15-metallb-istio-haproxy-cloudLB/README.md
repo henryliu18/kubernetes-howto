@@ -616,6 +616,7 @@ kubectl -n kube-system delete svc tiller-deploy
 rm -rf ~/.helm
 sudo rm -rf linux-amd64/
 sudo rm helm-v2.14.1-linux-amd64.tar.gz
+sudo rm /usr/local/bin/helm
 ```
 
 * delete nodes (master)
