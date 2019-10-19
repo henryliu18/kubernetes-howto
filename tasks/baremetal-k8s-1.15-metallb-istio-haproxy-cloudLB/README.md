@@ -613,7 +613,7 @@ kubectl delete clusterrolebinding tiller
 kubectl -n kube-system delete serviceaccount tiller
 kubectl -n kube-system delete svc tiller-deploy
 
-rm -rf .helm/
+rm -rf ~/.helm
 sudo rm -rf linux-amd64/
 sudo rm helm-v2.14.1-linux-amd64.tar.gz
 ```
@@ -624,4 +624,7 @@ sudo rm helm-v2.14.1-linux-amd64.tar.gz
 
 * delete cluster (all node)
 
-```sudo kubeadm reset -f```
+```
+sudo kubeadm reset -f
+rm -rf ~/.kube
+```
