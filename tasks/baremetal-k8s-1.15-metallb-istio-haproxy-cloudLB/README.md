@@ -617,3 +617,11 @@ rm -rf .helm/
 sudo rm -rf linux-amd64/
 sudo rm helm-v2.14.1-linux-amd64.tar.gz
 ```
+
+* delete nodes (master)
+
+```sudo kubectl delete node <NODE>```
+
+* delete cluster (all node)
+
+```sudo kubeadm reset -f```
