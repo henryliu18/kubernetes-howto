@@ -621,7 +621,7 @@ sudo rm /usr/local/bin/helm
 
 * delete nodes (master)
 
-```sudo kubectl delete node <NODE>```
+```kubectl delete node <NODE>```
 
 * delete cluster (all node)
 
