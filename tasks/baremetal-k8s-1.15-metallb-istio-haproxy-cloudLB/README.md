@@ -568,3 +568,52 @@ kiali   LoadBalancer   10.101.233.246   10.244.1.221   20001:31983/TCP   19h
 
 http://public-ip-of-worker1:31983/kiali/
 ```
+
+## Clean up
+* delete demo containers
+```
+kubectl delete vs/nginx-vs
+kubectl delete vs/tomcat-vs
+kubectl delete svc/tomcat-service
+kubectl delete svc/nginx-service
+kubectl delete deployment/nginx-demo
+kubectl delete deployment/tomcat-demo
+```
+* unlabel default namespace istio-injection
+
+```kubectl label ns default istio-injection-```
+
+* delete Kiali secret
+
+```kubectl delete Secret/kiali -n istio-system```
+
+* delete istio
+```
+helm del istio --purge
+helm del istio-init --purge
+kubectl delete ns/istio-system
+helm repo remove istio.io
+helm repo update
+```
+
+* delete CRDs for cert-manager
+
+```kubectl delete -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml```
+
+* delete metallb
+```
+kubectl delete ConfigMap/metallb-config -n metallb-system
+helm del metallb --purge
+```
+
+* delete helm
+```
+kubectl -n kube-system delete deployment tiller-deploy
+kubectl delete clusterrolebinding tiller
+kubectl -n kube-system delete serviceaccount tiller
+kubectl -n kube-system delete svc tiller-deploy
+
+rm -rf .helm/
+sudo rm -rf linux-amd64/
+sudo rm helm-v2.14.1-linux-amd64.tar.gz
+```
