@@ -243,21 +243,18 @@ helm install istio.io/istio-init --name istio-init --namespace istio-system
 
 ## Create Kiali secret (optional)
 ```
-KIALI_USERNAME=$(echo -n admin | base64)
-KIALI_PASSPHRASE=$(echo -n pass | base64)
-NAMESPACE=istio-system
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
   name: kiali
-  namespace: $NAMESPACE
+  namespace: $(echo -n istio-system)
   labels:
     app: kiali
 type: Opaque
 data:
-  username: $KIALI_USERNAME
-  passphrase: $KIALI_PASSPHRASE
+  username: $(echo -n admin | base64)
+  passphrase: $(echo -n pass | base64)
 EOF
 ```
 
