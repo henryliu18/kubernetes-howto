@@ -181,10 +181,10 @@ sudo kubeadm join 10.128.0.31:6443 --token vg477j.rp1r7luon9fxjypc \
     --discovery-token-ca-cert-hash sha256:918b805f68e6308b8ce85a743774e607a17f731f3a1bbb64ffd4a5bc4ce66472
 ```
 
-## HELM 2.14.1 installation on master node
+## HELM 2.14.3 installation on master node
 ```
-sudo curl -O https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz && \
-sudo tar -zxvf helm-v2.14.1-linux-amd64.tar.gz && \
+sudo curl -O https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz && \
+sudo tar -zxvf helm-v2.14.3-linux-amd64.tar.gz && \
 sudo cp linux-amd64/helm /usr/local/bin/
 
 cat <<EOF | kubectl create -f -
@@ -242,7 +242,7 @@ helm repo update
 helm install istio.io/istio-init --name istio-init --namespace istio-system
 ```
 
-## Create Kiali secret (optional)
+## Create Kiali secret
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -615,7 +615,7 @@ kubectl -n kube-system delete svc tiller-deploy
 
 rm -rf ~/.helm
 sudo rm -rf linux-amd64/
-sudo rm helm-v2.14.1-linux-amd64.tar.gz
+sudo rm helm-v2.14.3-linux-amd64.tar.gz
 sudo rm /usr/local/bin/helm
 ```
 
