@@ -569,7 +569,7 @@ kiali   LoadBalancer   10.101.233.246   10.244.1.221   20001:31983/TCP   19h
 http://public-ip-of-worker1:31983/kiali/
 ```
 
-## Clean up
+# Clean up
 * delete demo containers
 ```
 kubectl delete vs/nginx-vs
