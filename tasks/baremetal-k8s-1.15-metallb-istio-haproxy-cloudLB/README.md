@@ -16,9 +16,6 @@
 
 ## K8s master build - 2 vCPU, 7.5 GB, Centos 7
 ```
-echo IP address: && \
-read THIS_NODE_IP && \
-
 #install required tools
 sudo yum install yum-utils lvm2 ipset ipvsadm -y && \
 
@@ -79,7 +76,7 @@ sudo systemctl enable kubelet.service && \
 echo -e "apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: ${THIS_NODE_IP}
+  advertiseAddress: $(hostname -I | awk -F ' ' '{print $1}')
   bindPort: 6443
 nodeRegistration:
   taints:
