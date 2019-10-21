@@ -58,6 +58,7 @@ sudo systemctl enable kubelet.service
 ```
 
 # init k8s cluster, pod network
+```
 echo -e "apiVersion: kubeadm.k8s.io/v1beta2
 kind: InitConfiguration
 localAPIEndpoint:
@@ -83,6 +84,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config && \
 
 #Deploy Pod network
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
 
 # alias
 ```
