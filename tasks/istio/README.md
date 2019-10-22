@@ -56,6 +56,7 @@ kubectl -n istio-system \
 
 # demo helloworld
 ```
+INGRESS_DOMAIN=hello.busyapi.com
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
@@ -110,7 +111,43 @@ EOF
 ```
 
 # Now you should be able to access your demo application via HTTP
+
 ```curl http://$INGRESS_DOMAIN/hello```
+
+# Getting a Let’s Encrypt certificate issued using cert-manager
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ingress-cert
+  namespace: istio-system
+spec:
+  secretName: ingress-cert
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: $INGRESS_DOMAIN
+  dnsNames:
+  - $INGRESS_DOMAIN
+  acme:
+    config:
+    - http01:
+        ingressClass: istio
+      domains:
+      - $INGRESS_DOMAIN
+---
+EOF
+```
+
+# At this point the service should become available over HTTPS as well
+
+```curl --insecure https://$INGRESS_DOMAIN/hello```
+
+# If you are getting below error, delete istio-ingressgateway to make it restarting should work this around.
+
+* curl: (7) Failed connect to hello.istio.io:443; Connection refused
+
 
 ## Cleanup
 ```
