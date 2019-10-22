@@ -144,10 +144,44 @@ EOF
 
 ```curl --insecure https://$INGRESS_DOMAIN/hello```
 
-# If you are getting below error, delete istio-ingressgateway to make it restarting should work this around.
+# [IMPORTANT] If you are getting below error, delete istio-ingressgateway pod to make it restarting should work this around.
 
 * curl: (7) Failed connect to hello.istio.io:443; Connection refused
 
+# Moving to production from staging
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ingress-cert
+  namespace: istio-system
+spec:
+  secretName: ingress-cert
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: $INGRESS_DOMAIN
+  dnsNames:
+  - $INGRESS_DOMAIN
+  acme:
+    config:
+    - http01:
+        ingressClass: istio
+      domains:
+      - $INGRESS_DOMAIN
+---
+EOF
+```
+
+# Now delete the secret to force cert-manager to request a new certificate from the production issuer
+```kubectl delete secret -n istio-system ingress-cert```
+
+# watch that cert for a successful issuance
+```watch -n1 kubectl describe cert ingress-cert -n istio-system```
+
+# [IMPORTANT] HTTPS with legit certifiate should work, if not, just delete istio-ingressgateway pod :)
+```curl https://$INGRESS_DOMAIN/hello```
 
 ## Cleanup
 ```
