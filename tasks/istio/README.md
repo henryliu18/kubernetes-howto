@@ -127,7 +127,9 @@ spec:
 EOF
 ```
 
-# Make sure DNS A record is set for INGRESS_DOMAIN resolving Load Balancer public ip.  [IMPORTANT] If you are on bare metal setup, you need to make A record resolving a Haproxy host public ip because with metallb load balancer ip is a priviate ip which is only accessible within K8s cluster.  you also need to make sure Haproxy host is taking requests and responding properly.
+# Make sure DNS A record is set for INGRESS_DOMAIN resolving Load Balancer public ip.
+* [IMPORTANT] If you are on bare metal setup, A DNS A record resolving a Haproxy host public ip address because metallb load balancer ip is a priviate ip which is only accessible within K8s cluster.  We will need to deploy a worker node to accessing metallb ip as well as serving HTTP/HTTPS requests at a public ip address, that's Haproxy comes in as a proxy service for external-internal routing.
+* https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb
 
 # Now you should be able to access your demo application via HTTP
 ```curl http://$INGRESS_DOMAIN/hello```
