@@ -5,6 +5,7 @@ suggested sequence
   - helm => The package manager for Kubernetes
   - metallb => a bare metal load balancer solution
   - istio => service mesh (GKE tested)
+  - Haproxy-build-for-metallb => K8s worker and Haproxy configuration for metallb setup
 - toolbox => small container deployment
 - ingress-control-helm => install nginx-ingress from helm
 - tomcat-ingress => deploy tomcat with nginx-ingress
