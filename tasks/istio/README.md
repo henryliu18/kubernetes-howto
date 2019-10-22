@@ -1,4 +1,4 @@
-# This task has been tested on GKE
+# This task has been tested on GKE and bare metal K8s with metallb setup
 * GKE 1.14.6-gke.13 cluster with 2 worker nodes (2 vCPU / 7.5 GB)
 * Helm 2.14.3
 * Istio 1.3.3 with sds enabled, certmanager, grafana and kiali
@@ -127,7 +127,7 @@ spec:
 EOF
 ```
 
-# Make sure DNS A record is set for INGRESS_DOMAIN resolving to Load Balancer ip
+# Make sure DNS A record is set for INGRESS_DOMAIN resolving Load Balancer public ip.  [IMPORTANT] If you are on bare metal setup, you need to make A record resolving a Haproxy host public ip because with metallb load balancer ip is a priviate ip which is only accessible within K8s cluster.  you also need to make sure Haproxy host is taking requests and responding properly.
 
 # Now you should be able to access your demo application via HTTP
 ```curl http://$INGRESS_DOMAIN/hello```
