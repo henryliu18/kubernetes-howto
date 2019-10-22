@@ -37,6 +37,8 @@ data:
   passphrase: $(echo -n pass | base64)
 EOF
 ```
+# Enable observability - Grafana and Kiali
+```helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True | kubectl apply -f -```
 
 ## Cleanup
 ```
