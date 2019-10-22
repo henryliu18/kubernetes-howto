@@ -105,40 +105,10 @@ alias c='cat <<EOF | kubectl apply -f -'" >> ~/.bashrc
 # Join cluster from worker nodes
 
 # Tool - HELM 2.14.3 installation on master node
-```
-sudo curl -O https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz && \
-sudo tar -zxvf helm-v2.14.3-linux-amd64.tar.gz && \
-sudo cp linux-amd64/helm /usr/local/bin/
-
-cat <<EOF | kubectl create -f -
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: tiller
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: tiller
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-  - kind: ServiceAccount
-    name: tiller
-    namespace: kube-system
-EOF
-
-helm init --service-account tiller --skip-refresh
-helm repo update
-```
+* https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/helm/README.md#helm-2143-binaries
 
 # (optional) METALLB installation on master node
-
 * https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/metallb#metallb-is-a-load-balancer-implementation-for-bare-metal-kubernetes-clusters-using-standard-routing-protocols
 
 # Istio
-
 * https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/istio
