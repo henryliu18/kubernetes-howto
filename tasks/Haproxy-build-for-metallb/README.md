@@ -66,8 +66,8 @@ sudo kubeadm join 10.128.0.31:6443 --token vg477j.rp1r7luon9fxjypc \
 ## Cordon haproxy node on master node so nothing will be scheduled to this special node
 ```kubectl cordon haproxy1```
 
-## Testing metallb endpoint of Tomcat service from haproxy node
-```curl http://10.244.1.220/ -HHost:tom.busyapi.com```
+## Testing metallb endpoint from haproxy node
+```curl http://10.244.1.220/hello -HHost:hello.busyapi.com```
 
 ## Configure Haproxy for metallb endpoint
 ```
@@ -109,3 +109,6 @@ backend nodes-ssl
 sudo systemctl start haproxy && \
 sudo systemctl enable haproxy
 ```
+
+## Below should work when DNS A record pointing to haproxy node public ip
+```curl http://hello.busyapi.com/hello```
