@@ -4,7 +4,7 @@ suggested sequence
 * K8s-cluster-setup
   - helm => The package manager for Kubernetes
   - metallb => a bare metal load balancer solution
-  - istio => service mesh
+  - istio => service mesh (GKE tested)
 - toolbox => small container deployment
 - ingress-control-helm => install nginx-ingress from helm
 - tomcat-ingress => deploy tomcat with nginx-ingress

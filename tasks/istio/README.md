@@ -302,6 +302,7 @@ kubectl label ns default istio-injection-
 
 kubectl delete Secret/kiali -n istio-system
 
+cd istio-*
 helm template install/kubernetes/helm/istio \
        --name istio \
        --namespace istio-system \
@@ -315,5 +316,6 @@ helm template install/kubernetes/helm/istio \
        --set kiali.enabled=True | kubectl delete -f -
 
 helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl delete -f -
+for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl delete -f $i; done
 kubectl delete namespace istio-system
 ```
