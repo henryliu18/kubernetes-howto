@@ -135,6 +135,10 @@ helm init --service-account tiller --skip-refresh
 helm repo update
 ```
 
-# (optional) METALLB installation on master node - https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/metallb#metallb-is-a-load-balancer-implementation-for-bare-metal-kubernetes-clusters-using-standard-routing-protocols
+# (optional) METALLB installation on master node
 
-# 
+* https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/metallb#metallb-is-a-load-balancer-implementation-for-bare-metal-kubernetes-clusters-using-standard-routing-protocols
+
+# Istio
+
+* https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/istio

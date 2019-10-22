@@ -1,74 +1,42 @@
-# Istio
-
-## Download the release - https://istio.io/docs/setup/#downloading-the-release
-```curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.1 sh -```
-## cp istioctl to /usr/local/bin
-```sudo cp istio-1.3.1/bin/istioctl /usr/local/bin```
-## Istio precheck
-```istioctl verify-install```
-## Install Istio-init from helm with tiller, 3 jobs to be run to init
+# Istio release setup
 ```
-cd istio-*
+curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh -
+cd istio-1.3.3
+export PATH=$PWD/bin:$PATH
+istioctl verify-install
+```
+
+# Install all the Istio Custom Resource Definitions (CRDs)
+```for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done```
+
+# Istio-init
+```
 kubectl create namespace istio-system
 helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
 ```
-## Verify Istio-init installation
-```watch kubectl get all -n istio-system```
+
+# Enables Istio’s SDS (secret discovery service). This profile comes with additional authentication features enabled by default.
+```
+helm template install/kubernetes/helm/istio --name istio --namespace istio-system \
+    --values install/kubernetes/helm/istio/values-istio-sds-auth.yaml | kubectl apply -f -
+```
 
 ## Create a secret for Kiali
-```
-KIALI_USERNAME=$(echo -n admin | base64)
-KIALI_PASSPHRASE=$(echo -n pass | base64)
-```
-## specify Istio ns
-```NAMESPACE=istio-system```
-## apply yaml to create a secret
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
   name: kiali
-  namespace: $NAMESPACE
+  namespace: $(echo -n istio-system)
   labels:
     app: kiali
 type: Opaque
 data:
-  username: $KIALI_USERNAME
-  passphrase: $KIALI_PASSPHRASE
+  username: $(echo -n admin | base64)
+  passphrase: $(echo -n pass | base64)
 EOF
 ```
-
-## Install Istio from helm with tiller
-```helm template install/kubernetes/helm/istio --name istio --namespace istio-system | kubectl apply -f -```
-
-## Enable some oberserability
-```helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set grafana.enabled=True --set kiali.enabled=True | kubectl apply -f -```
-
-## Verify Istio
-```watch kubectl get all -n istio-system```
-
-# Bookinfo
-
-## Label the namespace that will host the application with istio-injection=enabled
-```kubectl label namespace default istio-injection=enabled```
-## Deploy app
-```kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml```
-## Confirm app is running
-```kubectl exec -it $(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}') -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"```
-## Create Istio gateway and virtualservice
-```kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml```
-
-# Kiali - https://istio.io/docs/tasks/telemetry/kiali/
-
-## Get Kiali pod name
-```kubectl get pod -n istio-system|grep kiali```
-## Get Kiali service name
-```kubectl get svc -n istio-system | grep kiali```
-## Change from ClusterIP to LoadBalancer or NodePort to access Kiali outside the cluster
-```kubectl edit svc kiali -n istio-system```
-## Access Kiali Console
-http://LoadBalancer-IP:20001
 
 ## Cleanup
 ```
