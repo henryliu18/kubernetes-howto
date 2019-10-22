@@ -112,3 +112,4 @@ sudo systemctl enable haproxy
 
 ## Below should work when DNS A record pointing to haproxy node public ip
 ```curl http://hello.busyapi.com/hello```
+* [TROUBLESHOOTING] If you getting connection refused, restart haproxy
