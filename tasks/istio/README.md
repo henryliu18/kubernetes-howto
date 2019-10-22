@@ -164,8 +164,8 @@ EOF
 
 ```curl --insecure https://$INGRESS_DOMAIN/hello```
 
-# [IMPORTANT] If you are getting below error, delete istio-ingressgateway pod to make it restarting should work this around.
-
+# [IMPORTANT] If you are getting below errors, delete istio-ingressgateway pod to make it restarting should work this around.
+* curl: (35) Encountered end of file
 * curl: (7) Failed connect to hello.istio.io:443; Connection refused
 
 # Moving to production from staging
