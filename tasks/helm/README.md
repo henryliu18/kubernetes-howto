@@ -1,9 +1,9 @@
 # The package manager for Kubernetes
 
-## helm binaries
+## helm 2.14.3 binaries
 ```
-sudo curl -O https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz && \
-sudo tar -zxvf helm-v2.14.1-linux-amd64.tar.gz && \
+sudo curl -O https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz && \
+sudo tar -zxvf helm-v2.14.3-linux-amd64.tar.gz && \
 sudo cp linux-amd64/helm /usr/local/bin/
 ```
 ## ServiceAccount and ClusterRoleBinding
@@ -32,13 +32,9 @@ EOF
 ## helm init
 ```helm init --service-account tiller --skip-refresh```
 
-Or below if you hit Error: error installing: the server could not find the requested resource
-
-```
-helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
-```
 ## repo update
 ```helm repo update```
+
 ## Clean up
 ```
 kubectl -n kube-system delete deployment tiller-deploy
