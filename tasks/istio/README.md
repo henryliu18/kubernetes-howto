@@ -136,7 +136,7 @@ EOF
 * [IMPORTANT] If you are on bare metal setup, A DNS A record resolving a Haproxy host public ip address is a MUST because metallb load balancer ip is a priviate ip which is only accessible within K8s container network.  We will need to deploy a worker node to accessing metallb ip as well as serving HTTP/HTTPS requests at a public ip address, that's Haproxy comes in as a proxy service for external-internal routing.
 * https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb
 
-# Now you should be able to access your demo application via HTTP
+# Now you should be able to access helloworld application via HTTP
 ```curl http://$INGRESS_DOMAIN/hello```
 
 # Getting a Let’s Encrypt certificate issued using cert-manager
@@ -217,17 +217,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: tomcat
+    app: tomcat
   name: tomcat-demo
 spec:
   replicas: 2
   selector:
     matchLabels:
-      run: tomcat
+      app: tomcat
   template:
     metadata:
       labels:
-        run: tomcat
+        app: tomcat
     spec:
       containers:
       - image: tomcat:alpine
@@ -239,13 +239,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tomcat-service
+  labels:
+    app: tomcat
 spec:
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    run: tomcat
+    app: tomcat
   type: ClusterIP
 ---
 apiVersion: networking.istio.io/v1alpha3
