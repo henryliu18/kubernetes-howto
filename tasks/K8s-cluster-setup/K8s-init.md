@@ -12,7 +12,7 @@ nodeRegistration:
 ---
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
-kubernetesVersion: v1.15.3
+kubernetesVersion: v1.16.2
 networking:
   podSubnet: 10.244.0.0/16" | sudo tee /tmp/kubeadm.yaml && \
 sudo kubeadm init --config /tmp/kubeadm.yaml --ignore-preflight-errors=NumCPU > ~/k8s.log && \

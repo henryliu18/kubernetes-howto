@@ -77,11 +77,14 @@ spec:
   selector:
     app: helloworld
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld
 spec:
+  selector:
+    matchLabels:
+      app: helloworld
   template:
     metadata:
       labels:
