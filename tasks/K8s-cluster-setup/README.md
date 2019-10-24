@@ -16,7 +16,7 @@
 # K8s 1.15.3 software installation (control plane and worker) - 2 vCPU, 7.5 GB, Centos 7
 * https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-1.15.3-Centos7.md
 
-# init k8s cluster, pod network
+# init k8s cluster, pod network on master node
 * https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-init.md
 
 # Join cluster from worker nodes
