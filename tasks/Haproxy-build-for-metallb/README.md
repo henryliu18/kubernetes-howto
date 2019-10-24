@@ -1,5 +1,5 @@
 # Haproxy build - 1 vCPU, 1.7 GB, Centos 7, default-allow-http, default-allow-https, k8s-worker
-* * https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-1.15.3-Centos7.md
+* * https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-1.16.2-Centos7.md
 
 ## Join cluster from worker nodes
 
