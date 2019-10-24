@@ -28,3 +28,6 @@
 
 # Istio 1.3.3 with sds enabled, certmanager, grafana and kiali
 * https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/istio#istio-release-setup
+
+# HAProxy setup for external to internal traffic forward and load balancing layer 4 and layer 7 (Bare metal)
+* https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb
