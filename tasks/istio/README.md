@@ -244,6 +244,7 @@ metadata:
 spec:
   ports:
   - port: 8080
+    name: http
     protocol: TCP
     targetPort: 8080
   selector:
