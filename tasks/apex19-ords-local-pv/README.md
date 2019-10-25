@@ -81,7 +81,7 @@ spec:
             claimName: pvc-apex19-db
       restartPolicy: Never
   backoffLimit: 1' | tee copydb-job.yaml && \
-kubectl apply -f copydb-job.yaml
+kubectl apply -f copydb-job.yaml && \
 kubectl label ns default istio-injection=enabled
 ```
 
@@ -262,8 +262,8 @@ EOF
 kubectl delete job.batch/copydb \
 service/ords-service-fe \
 service/dbserv1 \
-deployment.extensions/ords \
-deployment.extensions/apex19 \
+deployment/ords \
+deployment/apex19 \
 vs/ords-vs \
 storageclass.storage.k8s.io/local \
 persistentvolumeclaim/pvc-apex19-db \
