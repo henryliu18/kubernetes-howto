@@ -32,3 +32,6 @@
 
 # HAProxy setup for external to internal traffic forward and load balancing layer 4 and layer 7 (Bare metal)
 * https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb
+
+# Real world example - Deploy Oracle Apex 19.1 on database 18c and ORDS on Tomcat in 2 containers, persistent storage for database files.
+* https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/apex19-ords-local-pv
