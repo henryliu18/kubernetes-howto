@@ -197,7 +197,7 @@ EOF
 - Deployment/Service of standalone Apex 19.1 with ephemeral container fs
 ```
 cat<<EOF | kubectl apply -f -
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
