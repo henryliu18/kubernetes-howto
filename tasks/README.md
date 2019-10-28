@@ -1,7 +1,7 @@
 # some tasks to perform
 
 suggested sequence
-* ![K8s-cluster-setup](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/K8s-cluster-setup)
+* [K8s-cluster-setup](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/K8s-cluster-setup)
   - helm => The package manager for Kubernetes
   - metallb => a bare metal load balancer solution
   - istio => service mesh (GKE tested)
