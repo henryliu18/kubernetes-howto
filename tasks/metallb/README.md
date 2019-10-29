@@ -1,5 +1,8 @@
 # MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 
+## First identify K8s cluster pod subnet cidr, cidr gives you the available subnet ip range so you can allocate valid ip address from the range to metallb
+```kubectl cluster-info dump|grep cidr```
+
 ## With helm (preferable)
 ```helm install --name metallb stable/metallb --namespace metallb-system```
 ## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
