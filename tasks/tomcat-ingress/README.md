@@ -37,7 +37,7 @@ spec:
     run: tomcat
   type: ClusterIP
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: tomcat-ingress
