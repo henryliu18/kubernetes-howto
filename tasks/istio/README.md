@@ -6,9 +6,6 @@ export PATH=$PWD/bin:$PATH && \
 istioctl verify-install
 ```
 
-# Install all the Istio Custom Resource Definitions (CRDs)
-```for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl apply -f $i; done```
-
 # Istio-init
 ```
 kubectl create namespace istio-system
@@ -34,8 +31,6 @@ EOF
 
 # Istio with sds/certmanager/grafana/kiali
 ```
-echo ISSUER_EMAIL: && \
-read ISSUER_EMAIL && \
 helm template install/kubernetes/helm/istio \
        --name istio \
        --namespace istio-system \
@@ -43,8 +38,6 @@ helm template install/kubernetes/helm/istio \
        --set global.k8sIngress.enabled=true \
        --set global.k8sIngress.enableHttps=true \
        --set global.k8sIngress.gatewayName=ingressgateway \
-       --set certmanager.enabled=true \
-       --set certmanager.email=$ISSUER_EMAIL \
        --set grafana.enabled=True \
        --set kiali.enabled=True | kubectl apply -f -
 ```
@@ -128,10 +121,39 @@ EOF
 # Now you should be able to access helloworld application via HTTP
 ```curl http://$INGRESS_DOMAIN/hello```
 
-# Getting a Let’s Encrypt certificate issued using cert-manager
+# Staging ClusterIssuer
 ```
+echo ISSUER_EMAIL: && \
+read ISSUER_EMAIL && \
 cat <<EOF | kubectl apply -f -
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    # You must replace this email address with your own.
+    # Let's Encrypt will use this to contact you about expiring
+    # certificates, and issues related to your account.
+    email: ${ISSUER_EMAIL}
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      # Secret resource used to store the account's private key.
+      name: ingress-cert
+    # Add a single challenge solver, HTTP01 using nginx
+    solvers:
+    - http01:
+        ingress:
+          class: istio
+EOF
+```
+
+# Staging Certificate
+```
+echo INGRESS_DOMAIN: && \
+read INGRESS_DOMAIN && \
+cat <<EOF | kubectl apply -f -
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: ingress-cert
@@ -141,16 +163,9 @@ spec:
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: $INGRESS_DOMAIN
+  commonName: ${INGRESS_DOMAIN}
   dnsNames:
-  - $INGRESS_DOMAIN
-  acme:
-    config:
-    - http01:
-        ingressClass: istio
-      domains:
-      - $INGRESS_DOMAIN
----
+  - ${INGRESS_DOMAIN}
 EOF
 ```
 
@@ -158,14 +173,42 @@ EOF
 
 ```curl --insecure https://$INGRESS_DOMAIN/hello```
 
-# [IMPORTANT] If you are getting below errors, delete istio-ingressgateway pod to make it restarting should work this around.
+# [IMPORTANT] If you are getting below errors, delete istio-ingressgateway POD to make it restarting should work this around.
 * curl: (35) Encountered end of file
 * curl: (7) Failed connect to hello.istio.io:443; Connection refused
 
-# Moving to production from staging
+# Prod ClusterIssuer
 ```
+echo ISSUER_EMAIL: && \
+read ISSUER_EMAIL && \
+cat <<EOF | kubectl create -f -
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: ${ISSUER_EMAIL}
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: ingress-cert
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: istio
+EOF
+```
+
+# Prod Certificate
+```
+echo INGRESS_DOMAIN: && \
+read INGRESS_DOMAIN && \
 cat <<EOF | kubectl apply -f -
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: ingress-cert
@@ -175,16 +218,9 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  commonName: $INGRESS_DOMAIN
+  commonName: ${INGRESS_DOMAIN}
   dnsNames:
-  - $INGRESS_DOMAIN
-  acme:
-    config:
-    - http01:
-        ingressClass: istio
-      domains:
-      - $INGRESS_DOMAIN
----
+  - ${INGRESS_DOMAIN}
 EOF
 ```
 
