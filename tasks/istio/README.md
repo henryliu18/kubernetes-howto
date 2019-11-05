@@ -29,7 +29,7 @@ data:
 EOF
 ```
 
-# Istio with sds/certmanager/grafana/kiali
+# Istio with sds/grafana/kiali
 ```
 helm template install/kubernetes/helm/istio \
        --name istio \
