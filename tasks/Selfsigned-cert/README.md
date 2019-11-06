@@ -1,8 +1,8 @@
 # Self-sign a certificate for a webapp ingress control by nginx
 * Generate private key and self sign a certificate for a domain
 ```
-KEY_FILE=key
-CERT_FILE=cert
+KEY_FILE=tls.key
+CERT_FILE=tls.crt
 HOST=www.example.com
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${KEY_FILE} -out ${CERT_FILE} -subj "/CN=${HOST}/O=${HOST}"
 ```
