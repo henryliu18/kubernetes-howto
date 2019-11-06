@@ -1,3 +1,38 @@
+# Self-sign a certificate for a webapp ingress control by nginx
+* Generate private key and self sign a certificate for a domain
+```
+KEY_FILE=key
+CERT_FILE=cert
+HOST=www.example.com
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ${KEY_FILE} -out ${CERT_FILE} -subj "/CN=${HOST}/O=${HOST}"
+```
+* Create a secret with the key/certificate that we just singed
+```
+CERT_NAME=tls-www-example-ingress
+kubectl create secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE}
+# verify
+kubectl describe secret ${CERT_NAME}
+```
+* Assign tls with the secret that we just created to ingress of the webapp
+```
+kubectl edit ingress/www-ingress
+(skip)
+spec:
+  rules:
+  - host: www.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: www-service
+          servicePort: 80
+  tls:
+  - secretName: tls-www-example-ingress
+    hosts:
+    - www.example.com
+(skip)
+```
+* Navigate to https://www.example.com
+
 # Cloud provider managed load balancer for serving all haproxy endpoints for Tomcat service
 * Selecing all haproxy VMs for backends
 * Backend port is 80 (metallb load balancer servicing port)
