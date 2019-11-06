@@ -13,6 +13,7 @@
 - [toolbox](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/toolbox) => small container deployment
 - [nginx ingress control helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/ingress-control-helm) => install nginx-ingress from helm
 - [tomcat nginx ingress](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => deploy tomcat with nginx-ingress
+- [Selfsign certificate](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Selfsigned-cert) => Securing webapps
 - [kubernetes dashboard helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/kubernetes-dashboard-helm) => install dashboard webui from helm and configured it with nginx-ingress
 - [cert-manager](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/cert-manager-helm) => certificate management controller
 - [statefulset](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/statefulset) => showcase pod/pv dependent and how sts manages replicas dependently as a service
@@ -23,4 +24,3 @@
 
 # Managed K8s tasks
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
-* [Selfsign cert for cloud load balancer](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Selfsigned-cert-cloudLB)
