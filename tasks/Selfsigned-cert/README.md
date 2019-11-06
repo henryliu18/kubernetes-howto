@@ -34,6 +34,35 @@ spec:
 ```
 * Navigate to https://www.example.com
 
+# Use www.sslforfree.com to validate domains (DNS TXT record) and sign certificates on behalf of the domain owner with Let's encrypt ACME server
+* Make sure the webapp is working at port 80
+* Goto https://www.sslforfree.com and enter the domain name to be SSL certified
+* Choose Manual Verification (DNS) and you will be given TXT host/value, make a change to your DNS service provider
+* Complete validation process and hit download certificate, you will be given Certificate/Private Key/CA Bundle in the next page, copy/paste them into 3 files for K8s secret creation later
+* Create a secret with the key/certificate file in the previous step
+```
+kubectl create secret tls tls-hello-ingress --key "key.hello" --cert "cert.hello"
+```
+* Assign tls with the secret that we just created to ingress of the webapp
+```
+kubectl edit ingress/hello-ingress
+(skip)
+spec:
+  rules:
+  - host: hello.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: hello-service
+          servicePort: 5000
+  tls:
+  - secretName: tls-hello-example-ingress
+    hosts:
+    - hello.example.com
+(skip)
+```
+* Navigate to https://hello.example.com
+
 # Cloud provider managed load balancer for serving all haproxy endpoints for Tomcat service
 * Selecing all haproxy VMs for backends
 * Backend port is 80 (metallb load balancer servicing port)
