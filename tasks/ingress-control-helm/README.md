@@ -3,7 +3,7 @@
 ## Update helm repo (optional)
 ```helm repo update```
 ## Install Nginx Ingress Controller (managed kubernetes external ip available)
-```helm install stable/nginx-ingress --name nginx-ingress --set controller.publishService.enabled=true```
+```helm install stable/nginx-ingress --name nginx-ingress --namespace nginx-system --set controller.publishService.enabled=true```
 ## Install Nginx Ingress Controller (self managed kubernetes)
 ### Nominate a worker node to be labelled edge for ingress control node, this will make the node as internet facing node
 ```
