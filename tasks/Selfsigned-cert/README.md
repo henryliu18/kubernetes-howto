@@ -56,7 +56,7 @@ spec:
           serviceName: hello-service
           servicePort: 5000
   tls:
-  - secretName: tls-hello-example-ingress
+  - secretName: tls-hello-ingress
     hosts:
     - hello.example.com
 (skip)
