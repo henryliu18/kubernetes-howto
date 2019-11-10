@@ -1,5 +1,5 @@
 # Istio release setup - https://istio.io/docs/setup/#downloading-the-release
-```
+```bash
 curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh - && \
 cd istio-1.3.3 && \
 export PATH=$PWD/bin:$PATH && \
