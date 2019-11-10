@@ -6,7 +6,7 @@
 ## With helm (preferable)
 ```helm install --name metallb stable/metallb --namespace metallb-system```
 ## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
@@ -26,7 +26,7 @@ EOF
 ```kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml```
 
 ## https://metallb.universe.tf/configuration/#layer-2-configuration
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ConfigMap
@@ -43,7 +43,7 @@ data:
 EOF
 ```
 ## Tomcat deployment using LoadBalancer
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment

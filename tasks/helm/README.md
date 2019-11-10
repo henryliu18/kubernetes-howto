@@ -1,13 +1,13 @@
 # The package manager for Kubernetes
 
 ## helm 2.14.3 binaries
-```
+```bash
 sudo curl -O https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz && \
 sudo tar -zxvf helm-v2.14.3-linux-amd64.tar.gz && \
 sudo cp linux-amd64/helm /usr/local/bin/
 ```
 ## ServiceAccount and ClusterRoleBinding
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: ServiceAccount
@@ -30,7 +30,7 @@ subjects:
 EOF
 ```
 ## helm init
-```
+```bash
 helm init --service-account tiller --skip-refresh
 # if you get errors, run below workaround
 helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
@@ -40,7 +40,7 @@ helm init --service-account tiller --override spec.selector.matchLabels.'name'='
 ```helm repo update```
 
 ## Clean up
-```
+```bash
 kubectl -n kube-system delete deployment tiller-deploy
 kubectl delete clusterrolebinding tiller
 kubectl -n kube-system delete serviceaccount tiller

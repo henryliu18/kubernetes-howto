@@ -1,7 +1,7 @@
 # toolbox is a small container with handy tools for accessing resource within cluster, mostly for testing
 
 # Deployment
-```
+```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: apps/v1
 kind: Deployment

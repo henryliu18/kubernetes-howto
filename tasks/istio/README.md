@@ -305,10 +305,12 @@ EOF
 ```kubectl get service kiali -n istio-system```
 
 # Create virtualservice for ingress control Kiali so we can access Kiali console through Haproxy -> Istio ingressgateway
-```yaml
+```bash
 echo KIALI_INGRESS_DOMAIN: && \
 read KIALI_INGRESS_DOMAIN && \
 cat <<EOF | kubectl apply -f -
+```
+```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:

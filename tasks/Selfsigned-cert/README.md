@@ -1,6 +1,6 @@
 # Self-sign a certificate for a webapp ingress control by nginx
 * Generate private key and self sign a certificate for a domain
-```
+```bash
 KEY_FILE=tls.key
 CERT_FILE=tls.crt
 HOST=www.example.com
@@ -8,14 +8,14 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 -keyout ${KEY_FILE} -out ${CERT_FILE} -subj "/CN=${HOST}/O=${HOST}"
 ```
 * Create a secret with the key/certificate that we just singed
-```
+```bash
 CERT_NAME=tls-www-example-ingress
 kubectl create secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE}
 # verify
 kubectl describe secret ${CERT_NAME}
 ```
 * Assign tls with the secret that we just created to ingress of the webapp
-```
+```yaml
 kubectl edit ingress/www-ingress
 (skip)
 spec:
@@ -40,11 +40,11 @@ spec:
 * Choose Manual Verification (DNS) and you will be given TXT host/value, make a change to your DNS service provider
 * Complete validation process and hit download certificate, you will be given Certificate/Private Key/CA Bundle in the next page, copy/paste them into 3 files for K8s secret creation later
 * Create a secret with the key/certificate file in the previous step
-```
+```bash
 kubectl create secret tls tls-hello-ingress --key "key.hello" --cert "cert.hello"
 ```
 * Assign tls with the secret that we just created to ingress of the webapp
-```
+```yaml
 kubectl edit ingress/hello-ingress
 (skip)
 spec:
@@ -85,7 +85,7 @@ spec:
 ```openssl req -x509 -sha256 -new -nodes -key rootCAKey.pem -days 3650 -out rootCACert.pem```
 
 * rootCACert.pem for CA and SSL certificate and rootCAKey.pem for private key to create certificate for cloud LB listener
-```
+```bash
 ls -l
 total 8
 -rw-r--r-- 1 root root 1391 Oct 18 05:02 rootCACert.pem

@@ -1,7 +1,7 @@
 # Dashboard is a web-based Kubernetes user interface
 
 # Set a valid domain name to be signed TLS certificate and handled by nginx-ingress
-```
+```bash
 unset fqdn
 until [ "${fqdn}" != '' ]; do
         echo 'enter full qualified domain name (example: dashboard.xyz.com):'
@@ -9,7 +9,7 @@ until [ "${fqdn}" != '' ]; do
 done
 ```
 # Create stable/kubernetes-dashboard helm yaml
-```
+```yaml
 echo -e "image:
   repository: k8s.gcr.io/kubernetes-dashboard-amd64
   tag: v1.10.1

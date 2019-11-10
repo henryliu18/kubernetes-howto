@@ -2,11 +2,11 @@
 
 ## Update helm repo (optional)
 ```helm repo update```
-## Install Nginx Ingress Controller (managed kubernetes external ip available)
+## Install Nginx Ingress Controller (preferred)
 ```helm install stable/nginx-ingress --name nginx-ingress --namespace nginx-system --set controller.publishService.enabled=true```
-## Install Nginx Ingress Controller (self managed kubernetes)
+## Install Nginx Ingress Controller (customised)
 ### Nominate a worker node to be labelled edge for ingress control node, this will make the node as internet facing node
-```
+```bash
 until [ "${edge_nodename}" != '' ]; do
         echo 'enter edge node name:'
         read edge_nodename
@@ -15,7 +15,7 @@ done
 ### Label edge to a selected worker node
 ```kubectl label node ${edge_nodename} node-role.kubernetes.io/edge=```
 ### Install Nginx Ingress Controller
-```
+```yaml
 cat <<EOF | helm install stable/nginx-ingress -n nginx-ingress --namespace ingress-nginx -f -
 controller:
   replicaCount: 1

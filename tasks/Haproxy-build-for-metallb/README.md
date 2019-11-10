@@ -13,7 +13,7 @@
 ```sudo yum install haproxy -y```
 
 ## Configure HAProxy for metallb endpoint
-```
+```bash
 echo '#---------------------------------------------------------------------
 # FrontEnd Configuration for HTTP
 #---------------------------------------------------------------------

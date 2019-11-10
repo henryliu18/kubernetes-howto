@@ -1,6 +1,6 @@
 # Deploy Tomcat webserver with Nginx-ingress
 ## Deployment of Tomcat server 2 replicas, Service on port 80 -> containerPort 8080 and Ingress rules of host to backend service
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -55,7 +55,7 @@ EOF
 ```kubectl get pod,svc,ing -o wide```
 
 ## Clean up
-```
+```bash
 kubectl delete ing tomcat-ingress
 kubectl delete svc tomcat-service
 kubectl delete deployment tomcat-demo
