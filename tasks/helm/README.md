@@ -4,7 +4,8 @@
 ```bash
 sudo curl -O https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz && \
 sudo tar -zxvf helm-v3.0.0-linux-amd64.tar.gz && \
-sudo mv linux-amd64/helm /usr/local/bin/helm
+sudo mv linux-amd64/helm /usr/local/bin/helm && \
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 ~~## ServiceAccount and ClusterRoleBinding~~
 
