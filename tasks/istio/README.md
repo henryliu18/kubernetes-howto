@@ -9,7 +9,7 @@ istioctl verify-install
 # Istio-init
 ```bash
 kubectl create namespace istio-system
-helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
+helm template istio-init install/kubernetes/helm/istio-init --namespace istio-system | kubectl apply -f -
 ```
 
 # Create a secret for Kiali
@@ -31,8 +31,7 @@ EOF
 
 # Istio with sds/grafana/kiali
 ```bash
-helm template install/kubernetes/helm/istio \
-       --name istio \
+helm template istio install/kubernetes/helm/istio \
        --namespace istio-system \
        --set gateways.istio-ingressgateway.sds.enabled=true \
        --set global.k8sIngress.enabled=true \
@@ -385,8 +384,7 @@ kubectl delete Secret/kiali -n istio-system
 cd istio-*
 echo ISSUER_EMAIL: && \
 read ISSUER_EMAIL && \
-helm template install/kubernetes/helm/istio \
-       --name istio \
+helm template istio install/kubernetes/helm/istio \
        --namespace istio-system \
        --set gateways.istio-ingressgateway.sds.enabled=true \
        --set global.k8sIngress.enabled=true \
@@ -397,7 +395,7 @@ helm template install/kubernetes/helm/istio \
        --set grafana.enabled=True \
        --set kiali.enabled=True | kubectl delete -f -
 
-helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl delete -f -
+helm template istio-init install/kubernetes/helm/istio-init --namespace istio-system | kubectl delete -f -
 for i in install/kubernetes/helm/istio-init/files/crd*yaml; do kubectl delete -f $i; done
 kubectl delete namespace istio-system
 ```
