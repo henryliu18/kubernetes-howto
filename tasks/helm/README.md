@@ -1,12 +1,12 @@
 # The package manager for Kubernetes
 
-## helm 2.14.3 binaries
+## helm 3.0.0 binaries
 ```bash
-sudo curl -O https://get.helm.sh/helm-v2.14.3-linux-amd64.tar.gz && \
-sudo tar -zxvf helm-v2.14.3-linux-amd64.tar.gz && \
-sudo cp linux-amd64/helm /usr/local/bin/
+sudo curl -O https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz && \
+sudo tar -zxvf helm-v3.0.0-linux-amd64.tar.gz && \
+sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
-## ServiceAccount and ClusterRoleBinding
+~~## ServiceAccount and ClusterRoleBinding
 ```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
@@ -28,7 +28,7 @@ subjects:
     name: tiller
     namespace: kube-system
 EOF
-```
+```~~
 ## helm init
 ```bash
 helm init --service-account tiller --skip-refresh
