@@ -2,9 +2,10 @@
 
 ## First identify K8s cluster pod subnet cidr, cidr gives you the available subnet ip range so you can allocate valid ip address from the range to metallb
 ```kubectl cluster-info dump|grep cidr```
-
 ## With helm (preferable)
-```helm install --name metallb stable/metallb --namespace metallb-system```
+```kubectl create ns metallb-system```
+## With helm (preferable)
+```helm install metallb stable/metallb --namespace metallb-system```
 ## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
 ```yaml
 cat <<EOF | kubectl apply -f -
@@ -80,4 +81,10 @@ spec:
     run: tomcat
   type: LoadBalancer
 EOF
+```
+
+## Clean up
+```bash
+helm uninstall metallb --namespace metallb-system
+kubectl delete ns metallb-system
 ```
