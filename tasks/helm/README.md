@@ -16,5 +16,6 @@ sudo mv linux-amd64/helm /usr/local/bin/helm
 ## Clean up
 ```bash
 sudo rm -f /usr/local/bin/helm && \
-sudo rm -rf linux-amd64/
+sudo rm -rf linux-amd64/ && \
+sudo rm -f helm-v3.0.0-linux-amd64.tar.gz
 ```
