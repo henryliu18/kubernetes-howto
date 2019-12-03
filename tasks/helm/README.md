@@ -7,7 +7,7 @@ sudo tar -zxvf helm-v3.0.0-linux-amd64.tar.gz && \
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
 ~~## ServiceAccount and ClusterRoleBinding~~
-```yaml
+~~```yaml
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: ServiceAccount
@@ -28,7 +28,7 @@ subjects:
     name: tiller
     namespace: kube-system
 EOF
-```
+```~~
 ## helm init
 ```bash
 helm init --service-account tiller --skip-refresh
