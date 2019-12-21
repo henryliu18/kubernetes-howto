@@ -33,11 +33,10 @@ do
 done
 
 # adding hosts to ansible hosts file
-vi /etc/ansible/hosts
 echo "[servers]" >> /etc/ansible/hosts
 for (( i=0; i<${tLen}; i++ ));
 do
-  echo "node${i} ansible_host=${ALLIPS[$i]} ansible_user=root"
+  echo "node${i} ansible_host=${ALLIPS[$i]} ansible_user=root" >> /etc/ansible/hosts
 done
 
 # disable firewalld using ansible
