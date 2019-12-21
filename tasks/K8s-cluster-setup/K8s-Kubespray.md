@@ -8,32 +8,35 @@
 
 #### Replacing IP addresses of all your K8s hosts
 ```bash
-declare -a ALLIPS=(192.168.56.145 192.168.56.146 192.168.56.147)
+declare -a ALLIPS=()
+
+# Example
+declare -a ALLIPS=(192.168.56.152 192.168.56.153 192.168.56.154)
 ```
 
 ### Ansible host
 ```bash
 # python3 and pip3
-yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+yum install -y https://centos7.iuscommunity.org/ius-release.rpm && \
 yum install -y python36u python36u-libs python36u-devel python36u-pip
 
 # ansible
-yum -y install epel-release
+yum -y install epel-release && \
 yum -y install ansible
 
 # git
 yum -y install git
 
 # ssh keygen and copy to all hosts
-ssh-keygen
-tLen=${#ALLIPS[@]}
+ssh-keygen && \
+tLen=${#ALLIPS[@]} && \
 for (( i=0; i<${tLen}; i++ ));
 do
   ssh-copy-id root@${ALLIPS[$i]}
 done
 
 # adding hosts to ansible hosts file
-echo "[servers]" >> /etc/ansible/hosts
+echo "[servers]" >> /etc/ansible/hosts && \
 for (( i=0; i<${tLen}; i++ ));
 do
   echo "node${i} ansible_host=${ALLIPS[$i]} ansible_user=root" >> /etc/ansible/hosts
