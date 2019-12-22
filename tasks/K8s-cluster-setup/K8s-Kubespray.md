@@ -60,6 +60,6 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 # run playbook as root
 ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 
-# run playbook as user1 that has sudo privilege configured.  Using -K for sudo password interaction
+# run playbook as non-root user who can sudo.  Using -K for sudo password interaction
 ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_user=${AUSER} -K
 ```
