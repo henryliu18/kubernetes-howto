@@ -2,9 +2,7 @@
 
 ## Environment
 ### ansible host - requiring python3/pip3/ansible/git
-### node1 - master/worker
-### node2 - master/worker
-### node3 - worker
+### K8s hosts - requiring ssh server/python/firewall properly managed or disabled/root access or sudo configured
 
 #### Replacing IP addresses of all your K8s hosts
 ```bash
@@ -12,6 +10,9 @@ declare -a ALLIPS=()
 
 # Example
 declare -a ALLIPS=(192.168.56.152 192.168.56.153 192.168.56.154)
+
+# Ansible user (the user on K8s hosts that will be used for K8s deployment, must have sudo confiugred for non-root user)
+AUSER=user1
 ```
 
 ### Ansible host
@@ -32,14 +33,14 @@ ssh-keygen && \
 tLen=${#ALLIPS[@]} && \
 for (( i=0; i<${tLen}; i++ ));
 do
-  ssh-copy-id root@${ALLIPS[$i]}
+  ssh-copy-id ${AUSER}@${ALLIPS[$i]}
 done
 
 # adding hosts to ansible hosts file
 echo "[servers]" >> /etc/ansible/hosts && \
 for (( i=0; i<${tLen}; i++ ));
 do
-  echo "node${i} ansible_host=${ALLIPS[$i]} ansible_user=root" >> /etc/ansible/hosts
+  echo "node${i} ansible_host=${ALLIPS[$i]} ansible_user=${AUSER}" >> /etc/ansible/hosts
 done
 
 # disable firewalld using ansible
@@ -60,5 +61,5 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 
 # run playbook as user1 that has sudo privilege configured.  Using -K for sudo password interaction
-ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_user=user1 -K
+ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_user=${AUSER} -K
 ```
