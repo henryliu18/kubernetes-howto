@@ -56,6 +56,9 @@ cp -rfp inventory/sample inventory/mycluster
 IPS=("${ALLIPS[@]}")
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 
-# run playbook
+# run playbook as root
 ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
+
+# run playbook as user1 that has sudo privilege configured.  Using -K for sudo password interaction
+ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_user=user1 -K
 ```
