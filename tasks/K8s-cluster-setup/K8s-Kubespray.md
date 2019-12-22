@@ -1,7 +1,7 @@
 # K8s software installation (control plane and worker) using Kubespray
 
 ## Environment
-### ansible host - requiring python3/pip3/ansible/git
+### Ansible host - requiring python3/pip3/ansible/git
 ### K8s hosts - requiring ssh server/python/firewall properly managed or disabled/root access or sudo configured
 
 #### Replacing IP addresses of all your K8s hosts
@@ -44,8 +44,11 @@ do
 done
 
 # disable firewalld using ansible
-ansible -m shell -a 'systemctl stop firewalld' all
-ansible -m shell -a 'systemctl disable firewalld' all
+# rhel7/centos7
+ansible -m shell -a 'systemctl stop firewalld' --become --become-user=root --ask-become-pass all
+ansible -m shell -a 'systemctl disable firewalld' --become --become-user=root --ask-become-pass all
+# ubuntu
+ansible -m shell -a 'ufw disable' --become --become-user=root --ask-become-pass all
 
 # clone, configure Kubespray and create copy of a cluster inventory
 git clone https://github.com/kubernetes-sigs/kubespray.git && \
@@ -60,6 +63,6 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 # run playbook as root
 ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 
-# run playbook as non-root user who can sudo.  Using -K for sudo password interaction
-ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml -e ansible_user=${AUSER} -K
+# run playbook as non-root user who can sudo.  Using --ask-become-pass for sudo password interaction
+ansible-playbook --flush-cache -i inventory/mycluster/hosts.yaml  --become --become-user=root --ask-become-pass -e ansible_user=${AUSER} cluster.yml
 ```
