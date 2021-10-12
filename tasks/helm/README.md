@@ -1,6 +1,6 @@
 # The package manager for Kubernetes
 
-## helm 3.7.0 binaries
+## install helm 3.7.0 binaries on control plane node
 ```bash
 sudo curl -O  https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz && \
 sudo tar -zxvf helm-v3.7.0-linux-amd64.tar.gz && \
