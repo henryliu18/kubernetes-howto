@@ -121,8 +121,8 @@ kubectl get pod,svc,ing -o wide
 
 ## Clean up
 ```bash
-kubectl delete ing tomcat-ingress
-kubectl delete ing nginx-ingress
+kubectl delete ing ingress-tomcat
+kubectl delete ing ingress-nginx
 kubectl delete svc tomcat-service
 kubectl delete svc nginx-service
 kubectl delete deployment tomcat-demo
