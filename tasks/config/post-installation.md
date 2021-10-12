@@ -1,4 +1,4 @@
-# Create .kube and copy config file run as non-root user
+# Create .kube and copy config file run as non-root user on control plane host
 ```bash
 mkdir ~/.kube
 sudo cp /etc/kubernetes/admin.conf ~/.kube/config
