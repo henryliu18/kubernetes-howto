@@ -22,6 +22,7 @@ pip3 install -r $PWD/kubespray/requirements.txt
 
 ## configure project
 ```bash
+cd kubespray
 cp -rfp inventory/sample inventory/mycluster
 
 # Update Ansible inventory file with inventory builder
