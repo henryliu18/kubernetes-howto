@@ -8,6 +8,6 @@ sudo chown azureuser:azureuser ~/.kube/config
 # Test cluster access
 ```bash
 kubectl cluster-info
-kubectl nodes
+kubectl get nodes
 kubectl get pods -n kube-system
 ```
