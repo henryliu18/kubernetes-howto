@@ -12,7 +12,8 @@ declare -a ALLIPS=()
 declare -a ALLIPS=(192.168.56.152 192.168.56.153 192.168.56.154)
 
 # Ansible user (the user on K8s hosts that will be used for K8s deployment, must have sudo confiugred for non-root user)
-AUSER=user1
+AUSER=azureuser   #for Azure VM
+AUSER=ec2user     #for AWS EC2
 ```
 
 ### Ansible host
