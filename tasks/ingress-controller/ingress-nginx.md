@@ -4,7 +4,7 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 ```
 
-# DaemonSet
+# change from kind: Deployment to kind: DaemonSet
 ```bash
 helm show values ingress-nginx/ingress-nginx > ingress-nginx.yaml
 ```
