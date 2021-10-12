@@ -1,6 +1,6 @@
 # Setting up Ansible kubespray environment from workstation vm
 
-## docker run
+## bash into alpine-ansible
 ```bash
 sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 ```
