@@ -2,7 +2,7 @@
 
 ## docker run
 ```bash
-sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible sh
+sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 ```
 
 ## kubespray
