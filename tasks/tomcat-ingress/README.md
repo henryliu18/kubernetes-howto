@@ -115,7 +115,9 @@ spec:
 EOF
 ```
 ## Status
-```kubectl get pod,svc,ing -o wide```
+```bash
+kubectl get pod,svc,ing -o wide
+```
 
 ## Clean up
 ```bash
