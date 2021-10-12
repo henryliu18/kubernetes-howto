@@ -73,7 +73,10 @@ echo 'containerd_registries:
     - "https://mirror.gcr.io"
     - "https://registry-1.docker.io"' >> inventory/mycluster/group_vars/all/containerd.yml
 ```
-## node placement
+## node placement - modify preferred nodes for control plane/node/etcd...
+```bash
+vi inventory/mycluster/hosts.yaml
+```
 ## play runbook
 ```bash
 /usr/bin/ansible-playbook --flush-cache -i /home/alpine/kubespray/inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=azureuser /home/alpine/kubespray/cluster.yml
