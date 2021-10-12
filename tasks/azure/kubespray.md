@@ -39,6 +39,9 @@ vi /tmp/key
 ```bash
 chmod 700 /tmp/key
 ssh -i /tmp/key azureuser@10.0.0.4 uptime
+```
+
+```bash
 ssh -i /tmp/key azureuser@10.0.0.5 uptime
 ```
 
@@ -48,8 +51,28 @@ echo 'node1 ansible_host=10.0.0.4 ansible_user=azureuser
 node2 ansible_host=10.0.0.5 ansible_user=azureuser' > /etc/ansible/hosts
 ```
 
-## flannel
-## containerd
+## flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
+```bash
+vi inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+```
+
+## containerd - find container_manager: docker -> replace with container_manager: containerd
+```bash
+vi inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+```
+
+## containerd - find etcd_deployment_type: docker -> replace with etcd_deployment_type: host
+```bash
+vi inventory/mycluster/group_vars/etcd.yml
+```
+
+## containerd - append below code block to containerd.yml
+```bash
+echo 'containerd_registries:
+  "docker.io":
+    - "https://mirror.gcr.io"
+    - "https://registry-1.docker.io"' >> inventory/mycluster/group_vars/all/containerd.yml
+```
 ## node placement
 ## play runbook
 ```bash
