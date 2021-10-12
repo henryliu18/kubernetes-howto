@@ -81,3 +81,33 @@ vi inventory/mycluster/hosts.yaml
 ```bash
 /usr/bin/ansible-playbook --flush-cache -i /home/alpine/kubespray/inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=azureuser /home/alpine/kubespray/cluster.yml
 ```
+## expected output of playbook
+```bash
+PLAY RECAP **********************************************************************************************************************************************
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+node1                      : ok=523  changed=118  unreachable=0    failed=0    skipped=1090 rescued=0    ignored=2
+node2                      : ok=326  changed=75   unreachable=0    failed=0    skipped=594  rescued=0    ignored=1
+
+Tuesday 12 October 2021  11:08:34 +0000 (0:00:00.094)       0:08:44.973 *******
+===============================================================================
+kubernetes/preinstall : Install packages requirements ------------------------------------------------------------------------------------------- 40.18s
+kubernetes/kubeadm : Join to cluster ------------------------------------------------------------------------------------------------------------ 24.63s
+kubernetes/control-plane : kubeadm | Initialize first master ------------------------------------------------------------------------------------ 19.31s
+download : download_container | Download image if required -------------------------------------------------------------------------------------- 13.35s
+download : download_container | Download image if required -------------------------------------------------------------------------------------- 12.86s
+kubernetes/preinstall : Update package management cache (APT) ----------------------------------------------------------------------------------- 11.34s
+download : download_container | Download image if required -------------------------------------------------------------------------------------- 10.72s
+container-engine/containerd : ensure containerd packages are installed --------------------------------------------------------------------------- 9.81s
+download : download_container | Download image if required --------------------------------------------------------------------------------------- 9.35s
+kubernetes/control-plane : Master | wait for kube-scheduler -------------------------------------------------------------------------------------- 7.15s
+download : download_container | Download image if required --------------------------------------------------------------------------------------- 6.94s
+download : download_container | Download image if required --------------------------------------------------------------------------------------- 6.90s
+container-engine/crictl : download_file | Download item ------------------------------------------------------------------------------------------ 6.59s
+download : download_container | Download image if required --------------------------------------------------------------------------------------- 6.51s
+kubernetes-apps/ansible : Kubernetes Apps | Start Resources -------------------------------------------------------------------------------------- 5.81s
+container-engine/crictl : extract_file | Unpacking archive --------------------------------------------------------------------------------------- 5.63s
+download : download | Download files / images ---------------------------------------------------------------------------------------------------- 5.61s
+download : download_file | Download item --------------------------------------------------------------------------------------------------------- 5.42s
+container-engine/containerd : ensure containerd repository is enabled ---------------------------------------------------------------------------- 5.34s
+etcd : Configure | Check if etcd cluster is healthy ---------------------------------------------------------------------------------------------- 5.28s
+```
