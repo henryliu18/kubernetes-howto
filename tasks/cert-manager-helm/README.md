@@ -120,6 +120,9 @@ Events:
 ```
 
 ## Update Ingress for staging
+```bash
+kubectl get ingress
+```
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -189,6 +192,9 @@ Events:
 ```
 
 ## Update Ingress for prod
+```bash
+kubectl get ingress
+```
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
