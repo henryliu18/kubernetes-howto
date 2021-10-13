@@ -49,7 +49,7 @@ vi /tmp/key
 chmod 700 /tmp/key
 for (( i=0; i<${tLen}; i++ ));
 do
-	ssh -i /tmp/key ${K8S_INSTALLATION_USER}@${IPS[$i]} uptime
+  ssh -i /tmp/key ${K8S_INSTALLATION_USER}@${IPS[$i]} uptime
 done
 ```
 
