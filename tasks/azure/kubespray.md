@@ -5,7 +5,7 @@
 sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 ```
 
-## kubespray
+## kubespray configure
 ```bash
 apk update && \
 apk add gcc && \
@@ -20,7 +20,7 @@ pip3 uninstall ansible -y && \
 pip3 install -r $PWD/kubespray/requirements.txt
 ```
 
-## configure project
+## mycluster configure
 ```bash
 cd kubespray
 cp -rfp inventory/sample inventory/mycluster
