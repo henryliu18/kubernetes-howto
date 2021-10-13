@@ -47,11 +47,10 @@ vi /tmp/key
 ## add known_hosts
 ```bash
 chmod 700 /tmp/key
-ssh -i /tmp/key $K8S_INSTALLATION_USER@10.0.0.4 uptime
-```
-
-```bash
-ssh -i /tmp/key $K8S_INSTALLATION_USER@10.0.0.5 uptime
+for (( i=0; i<${tLen}; i++ ));
+do
+	ssh -i /tmp/key ${K8S_INSTALLATION_USER}@${IPS[$i]} uptime
+done
 ```
 
 ## configure /etc/ansible/hosts
