@@ -1,4 +1,4 @@
-# Bare metal K8s tasks
+# Kubernetes tasks
 
 ## Istio service mesh practices
 * [K8s cluster setup](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/K8s-cluster-setup)
@@ -9,7 +9,7 @@
   - [Haproxy build for metallb](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb) => K8s worker and Haproxy configuration for metallb connectivity
   - [Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/apex19-ords-local-pv)
 
-## Standard K8s practices
+## Bare metal K8s practices
 - [toolbox](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/toolbox) => small container deployment
 - [nginx ingress control helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/ingress-control-helm) => install nginx-ingress from helm
 - [tomcat nginx ingress](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => deploy tomcat with nginx-ingress
@@ -25,7 +25,7 @@
 ## Managed K8s tasks
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
 
-## Self-managed K8s/Kubespray/Ingress Nginx/Azure VM/Azure Load Balancer
+## Bare metal K8s/Kubespray/Ingress Nginx/Azure VM/Azure Load Balancer
 - [Security Group](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/security-group.md) => Configure Azure Security Group for Kubernetes
 - [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create 2 static public IP address SKU for all K8s nodes
 - [Virtual Machine](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/create-vm.md) => Create 2 VMs for control plane and worker node
