@@ -9,15 +9,10 @@ helm repo add stable https://charts.helm.sh/stable && \
 sudo rm -rf linux-amd64/ && \
 sudo rm -f helm-v3.7.0-linux-amd64.tar.gz
 ```
-~~## ServiceAccount and ClusterRoleBinding~~
-
-~~## helm init~~
-
 ## repo update
 ```bash
 helm repo update
 ```
-
 ## Clean up
 ```bash
 sudo rm -f /usr/local/bin/helm
