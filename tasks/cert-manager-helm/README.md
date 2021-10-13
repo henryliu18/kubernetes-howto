@@ -12,7 +12,7 @@ helm install \
   --version v1.5.4
 ```
 
-## Create Issuer (let's encrypt) for staging and prod
+## Create Issuer (let's encrypt) for staging and prod.  Change your@email.com to your email
 ```yaml
 apiVersion: cert-manager.io/v1
 kind: Issuer
