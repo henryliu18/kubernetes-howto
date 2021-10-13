@@ -44,17 +44,17 @@ vi /tmp/key
 ## add known_hosts
 ```bash
 chmod 700 /tmp/key
-ssh -i /tmp/key azureuser@10.0.0.4 uptime
+ssh -i /tmp/key $K8S_INSTALLATION_USER@10.0.0.4 uptime
 ```
 
 ```bash
-ssh -i /tmp/key azureuser@10.0.0.5 uptime
+ssh -i /tmp/key $K8S_INSTALLATION_USER@10.0.0.5 uptime
 ```
 
 ## configure /etc/ansible/hosts
 ```bash
-echo 'node1 ansible_host=10.0.0.4 ansible_user=azureuser
-node2 ansible_host=10.0.0.5 ansible_user=azureuser' > /etc/ansible/hosts
+echo "node1 ansible_host=10.0.0.4 ansible_user=$K8S_INSTALLATION_USER
+node2 ansible_host=10.0.0.5 ansible_user=$K8S_INSTALLATION_USER" > /etc/ansible/hosts
 ```
 
 ## flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
@@ -85,7 +85,7 @@ vi inventory/mycluster/hosts.yaml
 ```
 ## play runbook
 ```bash
-/usr/bin/ansible-playbook --flush-cache -i /home/alpine/kubespray/inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=azureuser /home/alpine/kubespray/cluster.yml
+/usr/bin/ansible-playbook --flush-cache -i /home/alpine/kubespray/inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER /home/alpine/kubespray/cluster.yml
 ```
 ## expected output of playbook
 ```bash
