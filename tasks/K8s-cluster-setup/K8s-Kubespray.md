@@ -1,8 +1,14 @@
-# K8s software installation (control plane and worker) using Kubespray
+# Kubernetes installation and cluster creation using Kubespray
 
-## bash into alpine-ansible
+## bash into alpine-ansible container
 ```bash
 sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
+```
+
+## Constants
+```bash
+#The user on the target servers configured for ssh and sudo.  E.g. azureuser/ec2user/opc depending on cloud providers
+K8S_INSTALLATION_USER=azureuser
 ```
 
 ## kubespray configure
