@@ -199,9 +199,10 @@ Events:
   Normal  Generated  7m5s                cert-manager  Stored new private key in temporary Secret resource "nginx-example-com-czvbj"
   Normal  Requested  7m5s                cert-manager  Created new CertificateRequest resource "nginx-example-com-b42qq"
   Normal  Issuing    6m34s               cert-manager  The certificate has been successfully issued
-  Normal  Issuing    12s (x2 over 7m5s)  cert-manager  Issuing certificate as Secret does not exist
-  Normal  Generated  12s                 cert-manager  Stored new private key in temporary Secret resource "nginx-example-com-qd9wd"
-  Normal  Requested  12s                 cert-manager  Created new CertificateRequest resource "nginx-example-com-l2dtj"
+  Normal  Issuing    99s (x2 over 7m5s)  cert-manager  Issuing certificate as Secret does not exist
+  Normal  Generated  99s                 cert-manager  Stored new private key in temporary Secret resource "nginx-example-com-qd9wd"
+  Normal  Requested  99s                 cert-manager  Created new CertificateRequest resource "nginx-example-com-l2dtj"
+  Normal  Issuing    29s (x2 over 15m)   cert-manager  The certificate has been successfully issued
 ```
 
 ## Update Certificate secret in Ingress for prod
