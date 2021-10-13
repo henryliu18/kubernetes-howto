@@ -22,5 +22,17 @@
 - [initContainers](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/initContainers) => initContainer runs tasks before the pod is deployed
 - [multi container pod](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/multi-container-pod) => containers sharing kernel namespace/IPC/volumes
 
-# Managed K8s tasks
+## Managed K8s tasks
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
+
+## Self-managed K8s/Kubespray/Ingress Nginx/Azure VM/Azure Load Balancer
+- [Security Group](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/security-group.md) => Configure Azure Security Group for Kubernetes
+- [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create static public IP address SKU for all K8s nodes
+- [Virtual Machine](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/create-vm.md) => Create 2 VMs for control plane and worker node
+- [Kubespray](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-Kubespray.md) => Configure Kubespray, create K8s cluster
+- [Post-installation](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/config/post-installation.md) => copy config file to user's home directory
+- [Helm](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/helm/README.md) => Install Helm
+- [Ingress controller](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/ingress-controller/ingress-nginx.md) => Install ingress-nginx
+- [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create Azure Load Balancer for ingress-nginx
+- [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
+- [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
