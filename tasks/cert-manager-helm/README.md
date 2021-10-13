@@ -1,6 +1,8 @@
-# cert-manager is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing keypair, or self signed.
+# cert-manager
+##### adds certificates and certificate issuers as resource types in Kubernetes clusters, and simplifies the process of obtaining, renewing and using those certificates.
+##### It can issue certificates from a variety of supported sources, including Let’s Encrypt, HashiCorp Vault, and Venafi as well as private PKI.
 
-## Before we go.. make sure your load balancer is pointing to your ingress controller, and your application is deployed and resolvable by ingress controller.
+## Before we go.. make sure your load balancer is pointing to your ingress controller, and your application is deployed and resolvable by ingress controller.  Also it is publicly accessible.
 ```bash
 curl http://nginx.example.com
 curl -k https://nginx.example.com
