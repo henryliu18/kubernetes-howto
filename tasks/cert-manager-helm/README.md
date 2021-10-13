@@ -239,6 +239,22 @@ spec:
 ```yaml
     secretName: nginx-example-com-tls-prod
 ```
+## Verify Ingress for prod
+```bash
+kubectl describe ingress.networking.k8s.io/ingress-nginx
+```
+
+### Expected output
+```bash
+Events:
+  Type    Reason             Age                 From                      Message
+  ----    ------             ----                ----                      -------
+  Normal  CreateCertificate  17m                 cert-manager              Successfully created Certificate "nginx-example-com-tls-staging"
+  Normal  Sync               2m6s (x3 over 31m)  nginx-ingress-controller  Scheduled for sync
+  Normal  Sync               2m6s (x3 over 31m)  nginx-ingress-controller  Scheduled for sync
+  Normal  CreateCertificate  2m6s                cert-manager              Successfully created Certificate "nginx-example-com-tls-prod"
+  Normal  DeleteCertificate  2m6s                cert-manager              Successfully deleted unrequired Certificate "nginx-example-com-tls-staging"
+```
 ## Testing prod
 ```bash
 curl https://nginx.example.com
