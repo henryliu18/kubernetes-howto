@@ -27,12 +27,12 @@
 
 ## Self-managed K8s/Kubespray/Ingress Nginx/Azure VM/Azure Load Balancer
 - [Security Group](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/security-group.md) => Configure Azure Security Group for Kubernetes
-- [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create static public IP address SKU for all K8s nodes
+- [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create 2 static public IP address SKU for all K8s nodes
 - [Virtual Machine](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/create-vm.md) => Create 2 VMs for control plane and worker node
 - [Kubespray](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-Kubespray.md) => Configure Kubespray, create K8s cluster
 - [Post-installation](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/config/post-installation.md) => copy config file to user's home directory
 - [Helm](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/helm/README.md) => Install Helm
 - [Ingress controller](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/ingress-controller/ingress-nginx.md) => Install ingress-nginx
-- [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create Azure Load Balancer for ingress-nginx
+- [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create/configure Azure Load Balancer for ingress-nginx port 80 and 443
 - [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
 - [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
