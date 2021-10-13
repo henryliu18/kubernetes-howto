@@ -154,6 +154,19 @@ spec:
     secretName: nginx-example-com-tls-staging
 ```
 
+## Verify Ingress for staging
+```bash
+kubectl describe ingress.networking.k8s.io/ingress-nginx
+```
+
+### Expected output
+```bash
+Events:
+  Type    Reason             Age                From                      Message
+  ----    ------             ----               ----                      -------
+  Normal  CreateCertificate  22s                cert-manager              Successfully created Certificate "nginx-example-com-tls-staging"
+```
+
 ## Testing staging
 ```bash
 wget --save-headers -O- nginx.example.com
