@@ -119,7 +119,7 @@ Events:
   Normal  Issuing    11s   cert-manager  The certificate has been successfully issued
 ```
 
-## Update Ingress for staging
+## Update Certificate secret in Ingress for staging
 ```bash
 kubectl get ingress
 ```
@@ -204,7 +204,7 @@ Events:
   Normal  Requested  12s                 cert-manager  Created new CertificateRequest resource "nginx-example-com-l2dtj"
 ```
 
-## Update Ingress for prod
+## Update Certificate secret in Ingress for prod
 ```bash
 kubectl get ingress
 ```
