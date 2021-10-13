@@ -1,5 +1,11 @@
 # cert-manager is a native Kubernetes certificate management controller. It can help with issuing certificates from a variety of sources, such as Let’s Encrypt, HashiCorp Vault, Venafi, a simple signing keypair, or self signed.
 
+## Before we go.. make sure your load balancer is pointing to your ingress controller, and your application is deployed and resolvable by ingress controller.
+```bash
+curl http://nginx.example.com
+curl -k https://nginx.example.com
+```
+
 ## Install cert-manager
 ```bash
 helm repo add jetstack https://charts.jetstack.io
@@ -114,12 +120,16 @@ Events:
 ```
 
 ## Update Ingress for staging
-```yaml
+```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+```
+```yaml
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-staging
+```
+```
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
@@ -133,6 +143,8 @@ spec:
               number: 80
         path: /
         pathType: Prefix
+```
+```yaml
   tls:
   - hosts:
     - nginx.example.com
@@ -177,12 +189,16 @@ Events:
 ```
 
 ## Update Ingress for prod
-```yaml
+```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
+```
+```yaml
     cert-manager.io/cluster-issuer: letsencrypt-prod
+```
+```
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
@@ -199,6 +215,8 @@ spec:
   tls:
   - hosts:
     - nginx.example.com
+```
+```yaml
     secretName: nginx-example-com-tls-prod
 ```
 ## Testing prod
