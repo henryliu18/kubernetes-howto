@@ -9,6 +9,10 @@ sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 ```bash
 #The user on the target servers configured for ssh and sudo.  E.g. azureuser/ec2user/opc depending on cloud providers
 K8S_INSTALLATION_USER=azureuser
+#Target IPs
+declare -a IPS="(10.0.0.4 10.0.0.5 10.0.0.15 10.0.0.25)"
+#Numbers of indexes in IPS
+tLen=${#IPS[@]}
 ```
 
 ## kubespray configure
@@ -32,7 +36,6 @@ cd kubespray
 cp -rfp inventory/sample inventory/mycluster
 
 # Update Ansible inventory file with inventory builder
-declare -a IPS=(10.0.0.4 10.0.0.5)
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
 ```
 
@@ -53,8 +56,14 @@ ssh -i /tmp/key $K8S_INSTALLATION_USER@10.0.0.5 uptime
 
 ## configure /etc/ansible/hosts
 ```bash
-echo "node1 ansible_host=10.0.0.4 ansible_user=$K8S_INSTALLATION_USER
-node2 ansible_host=10.0.0.5 ansible_user=$K8S_INSTALLATION_USER" > /etc/ansible/hosts
+#echo "node1 ansible_host=10.0.0.4 ansible_user=$K8S_INSTALLATION_USER
+#node2 ansible_host=10.0.0.5 ansible_user=$K8S_INSTALLATION_USER" > /etc/ansible/hosts
+>/etc/ansible/hosts
+for (( i=0; i<${tLen}; i++ ));
+do
+  k=$(expr ${i} + 1)
+  echo "node${k} ansible_host=${IPS[$i]} ansible_user=${K8S_INSTALLATION_USER}" >> /etc/ansible/hosts
+done
 ```
 
 ## flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
