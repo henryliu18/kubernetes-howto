@@ -25,7 +25,7 @@
 ## Managed K8s tasks
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
 
-## Bare metal K8s/Kubespray/Ingress Nginx/Azure VM/Azure Load Balancer (Updated Oct 2021)
+## Bare metal K8s/Kubespray/Ingress Nginx/Cert-manager/Azure VM/Azure Load Balancer (Updated Oct 2021)
 - [Security Group](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/security-group.md) => Configure Azure Security Group for Kubernetes
 - [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create 2 static public IP address SKU for all K8s nodes
 - [Virtual Machine](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/create-vm.md) => Create 2 VMs for control plane and worker node
