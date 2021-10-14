@@ -3,7 +3,7 @@
 ##### It can issue certificates from a variety of supported sources, including Let’s Encrypt, HashiCorp Vault, and Venafi as well as private PKI.
 ![image](https://cert-manager.io/images/high-level-overview.svg)
 
-#### High level speaking, we will create Issuer (let's encrypt API) for handling Certificate request for our website, since we're using ingress controller, we will be updating the corresponding Ingress of the website with Issuer and issued Certificate from the issuer.
+#### High level speaking, we will create Issuer (let's encrypt API) for handling Certificate request for our website, since we're using ingress controller, we will be updating the corresponding Ingress of the website with Issuer and issued Certificate from the issuer.  These are 2 stages of getting certificated - staging and prod, a real certificate can not be issued before staging one was successfully issued.
 
 ## Before we go.. make sure your load balancer is pointing to your ingress controller, and your application is deployed and resolvable by ingress controller.  Also it is publicly accessible.
 ```bash
