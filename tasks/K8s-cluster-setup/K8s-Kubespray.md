@@ -7,7 +7,7 @@ sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 
 ## Constants
 ```bash
-#The user on the target servers configured for ssh and sudo.  E.g. azureuser/ec2user/opc depending on cloud providers
+#The user on the target servers configured for ssh and sudo.  E.g. ubuntu/azureuser/ec2user/opc depending on cloud providers
 K8S_INSTALLATION_USER=azureuser
 #Target IPs
 declare -a IPS="(10.0.0.4 10.0.0.5)"
