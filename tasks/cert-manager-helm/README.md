@@ -179,12 +179,12 @@ wget --save-headers -O- nginx.example.com
 
 ### Output
 ```bash
---2021-10-13 08:51:13--  http://nginx.example.com/
+--2021-10-13 12:04:13--  http://nginx.example.com/
 Resolving nginx.example.com (nginx.example.com)... 10.23.1.10
 Connecting to nginx.example.com (nginx.example.com)|10.23.1.10|:80... connected.
 HTTP request sent, awaiting response... 308 Permanent Redirect
 Location: https://nginx.example.com [following]
---2021-10-13 08:51:14--  https://nginx.example.com/
+--2021-10-13 12:04:14--  https://nginx.example.com/
 Connecting to nginx.example.com (nginx.example.com)|10.23.1.10|:443... connected.
 ERROR: cannot verify nginx.example.com's certificate, issued by ‘CN=(STAGING) Artificial Apricot R3,O=(STAGING) Let's Encrypt,C=US’:
   Unable to locally verify the issuer's authority.
