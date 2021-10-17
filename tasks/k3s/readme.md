@@ -56,6 +56,8 @@ sudo rm -f helm-v3.7.1-linux-arm64.tar.gz
 
 ### [install ingress-nginx](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/ingress-controller/ingress-nginx.md)
 
+### [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md)
+
 ### Uninstall server node
 ```bash
 sudo /usr/local/bin/k3s-uninstall.sh
