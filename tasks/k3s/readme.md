@@ -44,11 +44,9 @@ echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### install helm
-https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/helm/README.md
+### [install helm](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/helm/README.md)
 
-### install ingress-nginx
-https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/ingress-controller/ingress-nginx.md
+### [install ingress-nginx](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/ingress-controller/ingress-nginx.md)
 
 ### Uninstall server node
 ```bash
