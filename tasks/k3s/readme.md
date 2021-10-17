@@ -7,6 +7,12 @@ Memory (GB): 12
 OCPU count: 2
 Network bandwidth (Gbps): 1
 Image: Canonical-Ubuntu-20.04-aarch64-2021.09.22-0
+
+Shape: VM.Standard.A1.Flex
+Memory (GB): 6
+OCPU count: 1
+Network bandwidth (Gbps): 1
+Image: Canonical-Ubuntu-20.04-aarch64-2021.09.22-0
 ```
 
 ### firewalld on all nodes
