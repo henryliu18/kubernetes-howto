@@ -39,3 +39,4 @@
 - [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
 
 ## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
+- [K3s](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/k3s/readme.md) - Get started for K3s, The certified Kubernetes distribution built for IoT & Edge computing
