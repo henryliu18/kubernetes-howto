@@ -36,6 +36,6 @@
 - [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create/configure Azure Load Balancer for ingress-nginx port 80 and 443
 - [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
 - [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
-- [SSL Encryption](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
+- [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
 
 ## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
