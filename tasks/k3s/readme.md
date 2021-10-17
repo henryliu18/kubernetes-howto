@@ -1,4 +1,4 @@
-# K3s
+# K3s ARM64
 
 ### firewalld on all nodes
 ```bash
@@ -44,7 +44,15 @@ echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### [install helm](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/helm/README.md)
+### install helm
+```bash
+sudo curl -O  https://get.helm.sh/helm-v3.7.1-linux-arm64.tar.gz && \
+sudo tar -zxvf helm-v3.7.1-linux-arm64.tar.gz && \
+sudo mv linux-arm64/helm /usr/local/bin/helm && \
+helm repo add stable https://charts.helm.sh/stable && \
+sudo rm -rf linux-arm64/ && \
+sudo rm -f helm-v3.7.1-linux-arm64.tar.gz
+```
 
 ### [install ingress-nginx](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/ingress-controller/ingress-nginx.md)
 
