@@ -2,12 +2,15 @@
 
 ### Constants
 ```bash
+# User info
 NEW_USER=john
 NAMESPACE=dev
+CONTEXT_NAME=john-context
+NEW_KUBECONFIG=john.kubeconfig
+# Cluster info
 CLUSTER_NAME=kubernetes
 APISERVER=https://10.176.92.41:6443
-NEW_KUBECONFIG=john.kubeconfig
-CONTEXT_NAME=john-context
+# RBAC info
 ROLE_NAME=role-dev
 ROLEBINDING_NAME=role-dev-rolebinding
 ```
