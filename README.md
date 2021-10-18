@@ -1,6 +1,6 @@
-# Kubernetes tasks
+# Kubernetes howto
 
-## Istio service mesh practices
+## Istio service mesh
 * [K8s cluster setup](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/K8s-cluster-setup)
   - [helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/helm) => The package manager for Kubernetes
   - [metallb](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/metallb) => a bare metal load balancer solution
@@ -9,7 +9,7 @@
   - [Haproxy build for metallb](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb) => K8s worker and Haproxy configuration for metallb connectivity
   - [Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/apex19-ords-local-pv)
 
-## Bare metal K8s practices
+## Bare metal Kubernetes
 - [toolbox](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/toolbox) => small container deployment
 - [nginx ingress control helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/ingress-control-helm) => install nginx-ingress from helm
 - [tomcat nginx ingress](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => deploy tomcat with nginx-ingress
@@ -23,7 +23,7 @@
 - [multi container pod](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/multi-container-pod) => containers sharing kernel namespace/IPC/volumes
 - [users and permissions](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/rbac/user-role-rolebinding.md) => user cert/key and rbac example
 
-## Managed K8s tasks
+## Managed Kubernetes
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
 
 ## Bare metal K8s/Kubespray/Ingress Nginx/Cert-manager/Azure VM/Azure Load Balancer (Updated Oct 2021)
