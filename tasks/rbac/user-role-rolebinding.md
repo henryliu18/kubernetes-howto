@@ -25,14 +25,14 @@ kubectl create namespace ${NAMESPACE}
 ### Create private key, certificate request and certificate for user
 ```bash
 openssl genrsa -out ${NEW_USER}.key 2048
-openssl req -new -key ${NEW_USER}.key -out $NEW_USER.csr -subj "/CN=${NEW_USER}/O=${NAMESPACE}"
+openssl req -new -key ${NEW_USER}.key -out ${NEW_USER}.csr -subj "/CN=${NEW_USER}/O=${NAMESPACE}"
 sudo openssl x509 -req -in ${NEW_USER}.csr -CA ${CA} -CAkey ${CAKEY} -CAcreateserial -out ${NEW_USER}.crt -days 365
 sudo chown $(whoami):$(id -Gn) ${NEW_USER}.crt
 ```
 
 ### Make kubeconfig for user
 ```bash
-sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster kubernetes --server ${APISERVER} --certificate-authority=${CA} --embed-certs=true
+sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster ${CLUSTER_NAME} --server ${APISERVER} --certificate-authority=${CA} --embed-certs=true
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-credentials ${NEW_USER} --client-certificate ${NEW_USER}.crt --client-key ${NEW_USER}.key --embed-certs=true
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-context ${CONTEXT_NAME} --cluster ${CLUSTER_NAME} --namespace ${NAMESPACE} --user ${NEW_USER}
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config use-context ${CONTEXT_NAME}
