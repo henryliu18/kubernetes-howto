@@ -2,7 +2,7 @@
 
 ### Constants
 ```bash
-# User info
+# New user info
 NEW_USER=john
 NAMESPACE=dev
 CONTEXT_NAME=john-context
