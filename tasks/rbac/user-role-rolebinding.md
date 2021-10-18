@@ -24,7 +24,7 @@ sudo openssl x509 -req -in ${NEW_USER}.csr -CA /etc/kubernetes/pki/ca.crt -CAkey
 
 ### Make kubeconfig for user
 ```bash
-kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster ${CLUSTER_NAME} --server ${APISERVER} --certificate-authority=$(sudo cat /etc/kubernetes/pki/ca.crt | base64 -w0)
-kubectl --kubeconfig ${NEW_KUBECONFIG} config set-credentials ${NEW_USER} --client-certificate=$(sudo cat ${NEW_USER}.crt | base64 -w0) --client-key=$(sudo cat ${NEW_USER}.key | base64 -w0)
-kubectl --kubeconfig ${NEW_KUBECONFIG} config set-context ${CONTEXT_NAME} --cluster ${CLUSTER_NAME} --namespace ${NAMESPACE} --user ${NEW_USER}
+sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster kubernetes --server https://10.176.92.41:6443 --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true
+sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-credentials ${NEW_USER} --client-certificate ${NEW_USER}.crt --client-key ${NEW_USER}.key --embed-certs=true
+sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-context ${CONTEXT_NAME} --cluster ${CLUSTER_NAME} --namespace ${NAMESPACE} --user ${NEW_USER}
 ```
