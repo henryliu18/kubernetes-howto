@@ -20,6 +20,7 @@ kubectl create namespace ${NAMESPACE}
 openssl genrsa -out ${NEW_USER}.key 2048
 openssl req -new -key ${NEW_USER}.key -out $NEW_USER.csr -subj "/CN=${NEW_USER}/O=${NAMESPACE}"
 sudo openssl x509 -req -in ${NEW_USER}.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out ${NEW_USER}.crt -days 365
+sudo chown $(whoami):$(id -Gn) ${NEW_USER}.crt
 ```
 
 ### Make kubeconfig for user
