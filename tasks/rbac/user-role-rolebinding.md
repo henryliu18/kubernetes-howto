@@ -1,4 +1,4 @@
-# Create certificate and private key for user
+# Create config file for user
 
 ### Constants
 ```bash
@@ -8,6 +8,8 @@ CLUSTER_NAME=kubernetes
 APISERVER=https://10.176.92.41:6443
 NEW_KUBECONFIG=john.kubeconfig
 CONTEXT_NAME=john-context
+ROLE_NAME=role-dev
+ROLEBINDING_NAME=role-dev-rolebinding
 ```
 
 ### Create namespace
@@ -30,4 +32,14 @@ sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-credentials ${NEW_USER} -
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-context ${CONTEXT_NAME} --cluster ${CLUSTER_NAME} --namespace ${NAMESPACE} --user ${NEW_USER}
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config use-context ${CONTEXT_NAME}
 sudo chown $(whoami):$(id -Gn) ${NEW_KUBECONFIG}
+```
+
+# Create role (permissions)
+```bash
+kubectl create role ${ROLE_NAME} --verb=get,list --resource=pods --namespace ${NAMESPACE}
+```
+
+# Create rolebinding
+```bash
+kubectl create rolebinding ${ROLEBINDING_NAME} --role=${ROLE_NAME} --user=${NEW_USER} --namespace ${NAMESPACE}
 ```
