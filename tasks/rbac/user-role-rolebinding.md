@@ -32,7 +32,7 @@ sudo chown $(whoami):$(id -Gn) ${NEW_USER}.crt
 
 ### Make kubeconfig for user
 ```bash
-sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster kubernetes --server https://10.176.92.41:6443 --certificate-authority=${CA} --embed-certs=true
+sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-cluster kubernetes --server ${APISERVER} --certificate-authority=${CA} --embed-certs=true
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-credentials ${NEW_USER} --client-certificate ${NEW_USER}.crt --client-key ${NEW_USER}.key --embed-certs=true
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config set-context ${CONTEXT_NAME} --cluster ${CLUSTER_NAME} --namespace ${NAMESPACE} --user ${NEW_USER}
 sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config use-context ${CONTEXT_NAME}
