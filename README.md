@@ -1,77 +1,43 @@
-![Kubernetes architecture](https://upload.wikimedia.org/wikipedia/commons/b/be/Kubernetes.png)
+# Kubernetes tasks
 
+## Istio service mesh practices
+* [K8s cluster setup](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/K8s-cluster-setup)
+  - [helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/helm) => The package manager for Kubernetes
+  - [metallb](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/metallb) => a bare metal load balancer solution
+  - [cert-manager](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/cert-manager-helm) => certificate management controller
+  - [istio](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/istio) => service mesh (GKE tested)
+  - [Haproxy build for metallb](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Haproxy-build-for-metallb) => K8s worker and Haproxy configuration for metallb connectivity
+  - [Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/apex19-ords-local-pv)
 
--AWS EC2  
-Ubuntu 18.04  
-Kubernetes version: v1.15.0
+## Bare metal K8s practices
+- [toolbox](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/toolbox) => small container deployment
+- [nginx ingress control helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/ingress-control-helm) => install nginx-ingress from helm
+- [tomcat nginx ingress](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => deploy tomcat with nginx-ingress
+- [Selfsign certificate](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Selfsigned-cert) => Securing webapps
+- [kubernetes dashboard helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/kubernetes-dashboard-helm) => install dashboard webui from helm and configured it with nginx-ingress
+- [cert-manager](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/cert-manager-helm) => certificate management controller
+- [statefulset](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/statefulset) => showcase pod/pv dependent and how sts manages replicas dependently as a service
+- [mysql use local pv](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/mysql-use-local-pv) => Mysql on a persistent storage
+- [nginx use nfs pv](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/nginx-use-nfs-pv) => another persistet volume example with NFS
+- [initContainers](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/initContainers) => initContainer runs tasks before the pod is deployed
+- [multi container pod](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/multi-container-pod) => containers sharing kernel namespace/IPC/volumes
+- [users and permissions](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/rbac/user-role-rolebinding.md) => user cert/key and rbac example
 
-Follow aws-ec2* for the build (manual)  
-Follow aws-ec2*-userdata for the build (auto)  
+## Managed K8s tasks
+* [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
 
-Load Balancer solution: Nginx Ingress Controller  
-Default vpc  
-Public ip  
-Security Group for master node  
-![Security Group for master node](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-master.PNG)
+## Bare metal K8s/Kubespray/Ingress Nginx/Cert-manager/Azure VM/Azure Load Balancer (Updated Oct 2021)
+- [Security Group](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/security-group.md) => Configure Azure Security Group for Kubernetes
+- [Static public IP](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/public-static-ip-address.md) => Create 2 static public IP address SKU for all K8s nodes
+- [Virtual Machine](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/create-vm.md) => Create 2 VMs for control plane and worker node
+- [Kubespray](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/K8s-cluster-setup/K8s-Kubespray.md) => Configure Kubespray, create K8s cluster
+- [Post-installation](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/config/post-installation.md) => copy config file to user's home directory
+- [Helm](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/helm/README.md) => Install Helm
+- [Ingress controller](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/ingress-controller/ingress-nginx.md) => Install ingress-nginx
+- [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create/configure Azure Load Balancer for ingress-nginx port 80 and 443
+- [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
+- [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
+- [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
 
-Security Group for worker node  
-![Security Group for worker node](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-worker.PNG)
-
-Security Group for general admin  
-![Security Group for server admin](https://github.com/henryliu18/kubernetes-poc/raw/master/images/security-group-serveradmin.PNG)
-
-Load Balancer solution: AWS ELB  
-default vpc  
-Public ip  
-Security Group for master node  
-  -Inbound:  
-    TCP 6443  
-    TCP 443  
-    TCP 2379-2380  
-    UDP 8285  
-    UDP 8472  
-    TCP Security-Group-of-ELB  
-
-Security Group for worker node  
-  -Inbound  
-    TCP 30000-32767  
-    TCP 10250  
-    TCP 10255  
-    TCP 179  
-    TCP 2379-2380  
-
-Security Group for ELB  
-  Inbound:  
-    -tcp 80 anywhere  
-
-Security Group for general admin  
-  -Inbound  
-    TCP 22  
-    All ICMP IPV4  
-
--VIRTUALBOX  
-CentOS Linux release 7.6.1810 (Core)  
-Kubernetes version: v1.15.0  
-
-Deployment  
-yum install git -y  && git clone https://github.com/henryliu18/kubernetes-poc.git  && cd kubernetes-poc/setup  
-
-Master node -> virtualbox-centos7.6-manual-master.sh  
-Worker node -> virtualbox-centos7.6-manual-worker.sh  
-
-Dashboard UI URL  
-http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/  
-
-[Troubleshooting dns not resolving]  
-- Ports blocking - check Firewall/Security group  
-- Multiple NICs causing CNI confused - solution -> specify a servicing NIC in yaml file  
-E.g.  
-containers:  
-      - name: kube-flannel  
-        image: quay.io/coreos/flannel:v0.11.0-amd64  
-        command:  
-        - /opt/bin/flanneld  
-        args:  
-        - --ip-masq  
-        - --kube-subnet-mgr  
-        - --iface=eth1  #replacing eth1 with servicing NIC name  
+## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
+- [Get started K3s](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/k3s/readme.md) - The certified Kubernetes distribution built for IoT & Edge computing
