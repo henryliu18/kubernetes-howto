@@ -7,7 +7,7 @@ NEW_USER=john
 NAMESPACE=dev
 CONTEXT_NAME=john-context
 NEW_KUBECONFIG=john.kubeconfig
-# Cluster info, use ```kubectl config view``` to find out
+# Cluster info -> kubectl config view
 CLUSTER_NAME=kubernetes
 APISERVER=https://10.176.92.41:6443
 # RBAC info
