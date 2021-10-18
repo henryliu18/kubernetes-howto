@@ -34,12 +34,12 @@ sudo kubectl --kubeconfig ${NEW_KUBECONFIG} config use-context ${CONTEXT_NAME}
 sudo chown $(whoami):$(id -Gn) ${NEW_KUBECONFIG}
 ```
 
-# Create role (permissions)
+# Create role (grant permissions to role)
 ```bash
 kubectl create role ${ROLE_NAME} --verb=get,list --resource=pods --namespace ${NAMESPACE}
 ```
 
-# Create rolebinding
+# Create rolebinding (grant role to user)
 ```bash
 kubectl create rolebinding ${ROLEBINDING_NAME} --role=${ROLE_NAME} --user=${NEW_USER} --namespace ${NAMESPACE}
 ```
