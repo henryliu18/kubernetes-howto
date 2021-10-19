@@ -2,6 +2,8 @@
 
 ## bash into alpine-ansible container
 ```bash
+sudo apt update
+sudo apt install docker.io
 sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
 ```
 
