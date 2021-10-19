@@ -1,6 +1,6 @@
 # The package manager for Kubernetes
 
-## install helm 3.7.0 binaries on control plane node
+## install helm 3.7.1 binaries on control plane node
 ```bash
 arch=$(uname -m)
 if [[ $arch == x86_64* ]]; then
