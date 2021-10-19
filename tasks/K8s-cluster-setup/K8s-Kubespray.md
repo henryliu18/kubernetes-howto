@@ -69,17 +69,17 @@ done
 
 ## flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
 ```bash
-vi inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+sed -i 's/kube_network_plugin: calico/kube_network_plugin: flannel/g' inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 
 ## containerd - find container_manager: docker -> replace with container_manager: containerd
 ```bash
-vi inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
+sed -i 's/container_manager: docker/container_manager: containerd/g' inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 
 ## containerd - find etcd_deployment_type: docker -> replace with etcd_deployment_type: host
 ```bash
-vi inventory/mycluster/group_vars/etcd.yml
+sed -i 's/etcd_deployment_type: docker/etcd_deployment_type: host/g' inventory/mycluster/group_vars/etcd.yml
 ```
 
 ## containerd - append below code block to containerd.yml
