@@ -21,7 +21,8 @@
 - [nginx use nfs pv](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/nginx-use-nfs-pv) => another persistet volume example with NFS
 - [initContainers](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/initContainers) => initContainer runs tasks before the pod is deployed
 - [multi container pod](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/multi-container-pod) => containers sharing kernel namespace/IPC/volumes
-- [users and permissions](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/rbac/user-role-rolebinding.md) => user cert/key and rbac example
+- [users and permissions](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/rbac/user-role-rolebinding.md) => user cert/key and rbac example (Updated Oct 2021)
+- [ArgoCD](https://github.com/henryliu18/kubernetes-howto/tree/master/tasks/ArgoCD) => Continuous Deployment in Kubernetes (Updated Oct 2021)
 
 ## Managed Kubernetes
 * [GKE Oracle Apex 19.1 on database 18c and ORDS](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/GKE-apex19-ords-pvc) => Oracle Apex 19.1 and ORDS webapp on Tomcat in 2 containers, database files are stored on GCP Disk
