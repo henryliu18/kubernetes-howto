@@ -72,8 +72,12 @@ stable          https://charts.helm.sh/stable
 
 ## Operations demo
 
+![image](https://user-images.githubusercontent.com/45472005/138251968-45a4ab23-e425-41d4-9c92-4f300acc520f.png)
 > Container code updated, rebuilt and pushed to container registry
 
+![image](https://user-images.githubusercontent.com/45472005/138253015-db0f250f-f594-45aa-9ac9-954150c703bc.png)
 > Helm charts code updated and pushed to helm repository
 
-### ArgoCD kicks in to pick up the change, deploy to state
+![image](https://user-images.githubusercontent.com/45472005/138253652-5c1bba5d-6d90-4428-a00e-e80329efcd68.png)
+![image](https://user-images.githubusercontent.com/45472005/138253841-de929e85-19ac-4951-9c87-9550c95cdb2d.png)
+> ArgoCD kicks in to pick up the change, deploy to state
