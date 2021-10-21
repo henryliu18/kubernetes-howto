@@ -78,7 +78,7 @@ stable          https://charts.helm.sh/stable
 ### Helm charts updated and pushed to repo
 >> values.yaml updated newly built container image => ```image: *****.*****.com/namespace/api-proxy:9```
 
->> Chart.yaml updated chart version and app version => ```version: 0.1.10``` and ```appVersion: 0.1.10```
+>> Chart.yaml updated chart version => ```version: 0.1.10``` app version => ```appVersion: 0.1.10```
 ![image](https://user-images.githubusercontent.com/45472005/138253015-db0f250f-f594-45aa-9ac9-954150c703bc.png)
 
 ### ArgoCD kicks in to pick up the change, deploy to state
