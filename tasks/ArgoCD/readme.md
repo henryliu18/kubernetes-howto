@@ -26,9 +26,9 @@ echo password: $(kubectl -n argocd get secret argocd-initial-admin-secret -o jso
 #### Get Helm repo url
 ```bash
 helm repo list
-NAME            URL
-stable          https://charts.helm.sh/stable
 ```
+> NAME            URL\
+stable          https://charts.helm.sh/stable
 
 ### Connect to a Helm repo
 ![image](https://user-images.githubusercontent.com/45472005/138028279-ed90582f-1024-4902-b2bc-f36d83c07703.png)
@@ -68,6 +68,12 @@ stable          https://charts.helm.sh/stable
 ### Turn on auto-sync
 ![image](https://user-images.githubusercontent.com/45472005/138244088-f6a22cbb-1470-4235-9e8b-e5f1e39591a6.png)
 
-### Increase replicas again
+### Increase replicas again, self heal kicks in to maintain the state
 
-### 
+## Operations demo
+
+> Container code updated, rebuilt and pushed to container registry
+
+> Helm charts code updated and pushed to helm repository
+
+### ArgoCD kicks in to pick up the change, deploy to state
