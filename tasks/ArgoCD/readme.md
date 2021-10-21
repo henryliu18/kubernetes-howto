@@ -66,7 +66,7 @@ stable          https://charts.helm.sh/stable
 ### Manual sync to make it sync OK
 
 ### Turn on auto-sync
-![image](https://user-images.githubusercontent.com/45472005/138243725-fbab98f2-98b6-4e8b-87c6-4e0d21aba48f.png)
+![image](https://user-images.githubusercontent.com/45472005/138244088-f6a22cbb-1470-4235-9e8b-e5f1e39591a6.png)
 
 ### Increase replicas again
 
