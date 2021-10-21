@@ -72,12 +72,19 @@ stable          https://charts.helm.sh/stable
 
 ## Operations demo
 
+### Container code updated, rebuilt and pushed to container registry => ```api-proxy:9```
 ![image](https://user-images.githubusercontent.com/45472005/138251968-45a4ab23-e425-41d4-9c92-4f300acc520f.png)
-> Container code updated, rebuilt and pushed to container registry
 
+### Helm charts updated and pushed to repo
+>> values.yaml updated newly built container image => ```image: *****.*****.com/namespace/api-proxy:9```
+
+>> Chart.yaml updated chart version and app version => ```version: 0.1.10``` and ```appVersion: 0.1.10```
 ![image](https://user-images.githubusercontent.com/45472005/138253015-db0f250f-f594-45aa-9ac9-954150c703bc.png)
-> Helm charts code updated and pushed to helm repository
 
+### ArgoCD kicks in to pick up the change, deploy to state
+>> Chart version updated to 0.1.10
 ![image](https://user-images.githubusercontent.com/45472005/138253652-5c1bba5d-6d90-4428-a00e-e80329efcd68.png)
+
+>> Container image version updated to api-proxy:9
 ![image](https://user-images.githubusercontent.com/45472005/138253841-de929e85-19ac-4951-9c87-9550c95cdb2d.png)
-> ArgoCD kicks in to pick up the change, deploy to state
+
