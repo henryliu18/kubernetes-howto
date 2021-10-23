@@ -38,7 +38,7 @@ stable          https://charts.helm.sh/stable
 
 ### Your login account
 ![image](https://user-images.githubusercontent.com/45472005/138028927-76423435-5a07-4f8b-a04d-649a68f026f4.png)
-![image](https://user-images.githubusercontent.com/45472005/138029416-f90b2cdd-a2e7-4d3e-8ac1-b0389071094d.png)
+![image](https://user-images.githubusercontent.com/45472005/138553320-0a5b5dcd-b2e0-4ed5-95fb-98b5b73c0692.png)
 
 #### Create a personal token
 ![image](https://user-images.githubusercontent.com/45472005/138029717-26beeaa2-0861-44f5-84da-65bfa44fe2cd.png)
@@ -49,7 +49,7 @@ stable          https://charts.helm.sh/stable
 ![image](https://user-images.githubusercontent.com/45472005/138031783-5a1b9c0d-54cf-4984-92fb-938eaa0f5ac9.png)
 
 ### Install an application from Helm repo
-![image](https://user-images.githubusercontent.com/45472005/138240843-a4aee91d-e3f5-400a-94e7-b2a1e605a630.png)
+![image](https://user-images.githubusercontent.com/45472005/138553375-efe35c40-2881-4d1c-bc0d-abe8abfef20a.png)
 
 ### OutOfSync
 ![image](https://user-images.githubusercontent.com/45472005/138241563-e4b637e5-c8fa-412e-82d4-6ece742399d8.png)
