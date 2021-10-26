@@ -51,3 +51,13 @@ kubectl get secret/mysecret -o yaml
 kubectl delete sealedsecret/mysecret
 kubectl get sealedsecret,secret mysecret
 ```
+
+### Uninstall
+```bash
+kubectl delete -f https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.16.0/controller.yaml
+```
+
+### TLS
+```bash
+kubectl get secret -n kube-system
+```
