@@ -73,5 +73,6 @@ kubectl delete -f https://github.com/bitnami-labs/sealed-secrets/releases/downlo
 
 ### Backup TLS (Delete pod everytime when you destroy or create TLS for pod to pick it up new TLS)
 ```bash
-kubectl get secret <TLSsecretname> -n kube-system -o yaml
+kubectl get secret -n kube-system -l sealedsecrets.bitnami.com/sealed-secrets-key=active
+kubectl get secret <TLS-SECRET-NAME> -n kube-system -o yaml
 ```
