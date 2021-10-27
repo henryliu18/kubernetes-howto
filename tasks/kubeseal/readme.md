@@ -46,6 +46,20 @@ kubectl get sealedsecret,secret mysecret
 kubectl get secret/mysecret -o yaml
 ```
 
+### update secret trick
+```bash
+# encrypt barbar, secret name is needed as an input
+echo -n barbar | kubeseal --raw --name=mysecret --from-file=/dev/stdin
+
+# specify cert
+echo -n barbar | kubeseal --cert=public-key-cert.pem --raw --name=mysecret --from-file=/dev/stdin
+
+# update sealedsecret yaml
+
+# replace sealedsecret
+kubectl replace -f mysecret.yaml
+```
+
 ### delete sealedsecret and check the secret
 ```bash
 kubectl delete sealedsecret/mysecret
