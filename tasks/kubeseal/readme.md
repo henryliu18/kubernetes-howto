@@ -44,11 +44,11 @@ kubectl get secret/mysecret -o yaml
 
 ### update secret trick
 ```bash
-# encrypt barbar, secret name is needed as an input
-echo -n barbar | kubeseal --raw --name=mysecret --from-file=/dev/stdin
+# encrypt NewPassword, secret name (mysecret) is needed as an input for encryption
+echo -n NewPassword | kubeseal --raw --name=mysecret --from-file=/dev/stdin
 
 # specify cert if needed
-echo -n barbar | kubeseal --cert=public-key-cert.pem --raw --name=mysecret --from-file=/dev/stdin
+echo -n NewPassword | kubeseal --cert=public-key-cert.pem --raw --name=mysecret --from-file=/dev/stdin
 
 # update sealedsecret yaml with encrypted string
 vi mysealedsecret.yaml
