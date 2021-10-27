@@ -27,21 +27,17 @@ kubeseal --fetch-cert
 
 ### Create a secret
 ```bash
-echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/dev/stdin -o json >mysecret.json
+echo -n bar | kubectl create secret generic mysecret --dry-run --from-file=foo=/dev/stdin -o yaml >mysecret.yaml
 ```
 
-### seal it
+### Encryption
 ```bash
-kubeseal  <mysecret.json >mysealedsecret.json
-```
+kubeseal  <mysecret.yaml >mysealedsecret.yaml -o yaml
 
 ### create sealedsecret
-```bash
-kubectl create -f mysealedsecret.json
-```
+kubectl create -f mysealedsecret.yaml
 
 ### get both encrypted and decrypted secrets
-```bash
 kubectl get sealedsecret,secret mysecret
 kubectl get secret/mysecret -o yaml
 ```
@@ -51,13 +47,14 @@ kubectl get secret/mysecret -o yaml
 # encrypt barbar, secret name is needed as an input
 echo -n barbar | kubeseal --raw --name=mysecret --from-file=/dev/stdin
 
-# specify cert
+# specify cert if needed
 echo -n barbar | kubeseal --cert=public-key-cert.pem --raw --name=mysecret --from-file=/dev/stdin
 
-# update sealedsecret yaml
+# update sealedsecret yaml with encrypted string
+vi mysealedsecret.yaml
 
 # replace sealedsecret
-kubectl replace -f mysecret.yaml
+kubectl replace -f mysealedsecret.yaml
 ```
 
 ### delete sealedsecret and check the secret
