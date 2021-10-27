@@ -55,6 +55,9 @@ vi mysealedsecret.yaml
 
 # replace sealedsecret
 kubectl replace -f mysealedsecret.yaml
+
+# check mysecret again
+kubectl get secret/mysecret -o yaml
 ```
 
 ### delete sealedsecret and check the secret
