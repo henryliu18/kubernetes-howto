@@ -1,4 +1,5 @@
-# Istio release setup - https://istio.io/docs/setup/#downloading-the-release
+# Istio
+### Istio release setup - https://istio.io/latest/docs/setup/getting-started/#download
 ```bash
 curl -L https://git.io/getLatestIstio | ISTIO_VERSION=1.3.3 sh - && \
 cd istio-1.3.3 && \
