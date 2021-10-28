@@ -1,4 +1,9 @@
-# Create 4 persistent volumes on specified worker nodes (nodeAffinity)
+# When to use StatefulSet
+
+#### A Redis pod that has access to a volume, but you want it to maintain access to the same volume even if it is redeployed or restarted.
+#### A Cassandra cluster and have each node maintain access to its data.
+#### A webapp that needs to communicate with its replicas using known predefined network identifiers.
+## Create 4 persistent volumes on specified worker nodes (nodeAffinity)
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -94,7 +99,7 @@ spec:
           - w1
 EOF
 ```
-# create 4 replicas of nginx as a service dependently in sequence.  volumeClaimTemplates is used to mount Volume for pod, volume/pod will be managed stateful once they are bound
+## create 4 replicas of nginx as a service dependently in sequence.  volumeClaimTemplates is used to mount Volume for pod, volume/pod will be managed stateful once they are bound
 ```
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
