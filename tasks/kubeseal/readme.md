@@ -1,6 +1,6 @@
 # Kubeseal for GitOps
 
-## kubeseal to encrypt secret -> push sealedsecret to repo -> CD tools pick up the change to create sealedsecret -> sealed secret controller kicks in to create secret using decrypted content
+## kubeseal to encrypt secret -> push sealedsecret to repo -> CD tools pick up the change to create sealedsecret -> sealed secret controller kicks in to decrypt and create secret
 
 ![image](https://user-images.githubusercontent.com/45472005/139449307-ece8e927-618c-41fa-89a5-6b0986d5e6d7.png)
 ![image](https://user-images.githubusercontent.com/45472005/139449335-48b185d9-628b-41ca-b03c-27d738fa1b55.png)
