@@ -15,12 +15,13 @@ curl -k https://nginx.example.com
 ```bash
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
-kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml
+#kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.4/cert-manager.crds.yaml
 helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --version v1.5.4
+  --set installCRDs=true
 ```
 
 ## Create Issuer (let's encrypt) for staging and prod.  Change your@email.com to your email
