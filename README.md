@@ -43,3 +43,4 @@
 
 ## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
 - [Get started K3s](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/k3s/readme.md) - The certified Kubernetes distribution built for IoT & Edge computing
+- [microk8s on ARM64](https://github.com/henryliu18/kubernetes-howto/tree/master/tasks/microk8s) - for micro clouds and edge computing
