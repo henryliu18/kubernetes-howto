@@ -40,6 +40,7 @@
 - [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
 - [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
 - [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
+- [SSLForFree manual way](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/install-ssl/readmd.MD) => Create a free SSL certificate and install it manually
 
 ## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
 - [Get started K3s](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/k3s/readme.md) - The certified Kubernetes distribution built for IoT & Edge computing
