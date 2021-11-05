@@ -132,7 +132,13 @@ EOF
 ```bash
 microk8s helm3 repo add  jetstack https://charts.jetstack.io
 microk8s helm3 repo update
-microk8s helm3 install   cert-manager jetstack/cert-manager   --namespace cert-manager   --create-namespace   --version v1.5.4   --set installCRDs=true
+microk8s helm3 install \
+cert-manager \
+jetstack/cert-manager \
+--namespace cert-manager \
+--create-namespace \
+--version v1.5.4 \
+--set installCRDs=true
 ```
 
 ### Kubeseal
