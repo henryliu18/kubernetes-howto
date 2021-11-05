@@ -1,9 +1,11 @@
 
-### Make sure your webapp is servicing port 443 (HTTPS)
+## In order to create your free SSL certificate, below requirements need to be fulfilled.
+- Your webapp is servicing port 80
+- Your webapp is internet facing
+- You own a domain name
+- You are able to perform dns changes and/or have access to the web server
 
-### Create certificate for the domain owned by you
-
-### Some dns configuration for verification by the CA
+### [SSLForFree](https://www.sslforfree.com/)
 
 ### Cert files created, what are they
 A zip file that's created by the CA will be sent to you, extract it and you will get 3 important files, they are
