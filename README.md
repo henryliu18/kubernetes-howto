@@ -13,7 +13,6 @@
 - [toolbox](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/toolbox) => small container deployment
 - [nginx ingress control helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/ingress-control-helm) => install nginx-ingress from helm
 - [tomcat nginx ingress](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => deploy tomcat with nginx-ingress
-- [Selfsign certificate](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Selfsigned-cert) => Securing webapps
 - [kubernetes dashboard helm](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/kubernetes-dashboard-helm) => install dashboard webui from helm and configured it with nginx-ingress
 - [cert-manager](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/cert-manager-helm) => certificate management controller
 - [statefulset](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/statefulset) => showcase pod/pv dependent and how sts manages replicas dependently as a service
@@ -39,8 +38,9 @@
 - [Load Balancer](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/load-balancer.md) => Create/configure Azure Load Balancer for ingress-nginx port 80 and 443
 - [Deployment](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/tomcat-ingress) => Deploy tomcat/nginx web server for testing
 - [Testing](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/azure/testing.md) => Testing Load Balancer, Ingress controller
-- [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => Install cert-manager, request for SSL certificate from let's encrypt
-- [SSLForFree manual way](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/install-ssl/readmd.MD) => Create a free SSL certificate and install it manually
+- [Selfsign certificate](https://github.com/henryliu18/kubernetes-poc/tree/master/tasks/Selfsigned-cert) => [Manual] Securing webapps
+- [cert-manager/let's encrypt](https://github.com/henryliu18/kubernetes-poc/blob/master/tasks/cert-manager-helm/README.md) => [Automation] Install cert-manager, request for SSL certificate from let's encrypt
+- [SSLForFree](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/install-ssl/readmd.MD) => [Manual] Create a free SSL certificate and install it manually
 
 ## Bare metal K3s/Ingress Nginx/Cert-manager (Updated Oct 2021)
 - [Get started K3s](https://github.com/henryliu18/kubernetes-howto/blob/master/tasks/k3s/readme.md) - The certified Kubernetes distribution built for IoT & Edge computing
