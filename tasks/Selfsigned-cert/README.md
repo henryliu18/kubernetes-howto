@@ -63,3 +63,44 @@ openssl x509 \
 -text \
 -noout
 ```
+
+7. Create tls secret
+```bash
+cat tomcat.cheesemm.com.crt rootCA.crt > full.crt
+
+kubectl create secret tls tls-self-tomcat-cheesemm-com \
+--key tomcat.cheesemm.com.key \
+--cert full.crt
+```
+
+8. Point ingress tls to tls-self-tomcat-cheesemm-com
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: public
+  name: ingress-tomcat
+  namespace: default
+spec:
+  rules:
+  - host: tomcat.cheesemm.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: tomcat-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - tomcat.cheesemm.com
+    secretName: tls-self-tomcat-cheesemm-com
+```
+
+10. Testing
+```bash
+curl -k https://tomcat.cheesemm.com
+```
