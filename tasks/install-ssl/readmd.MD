@@ -3,7 +3,7 @@
 - Your webapp is servicing port 80
 - Your webapp is internet facing
 - You own a domain name
-- You are able to perform dns changes and/or have access to the web server
+- You have access to the web server and/or are able to perform dns changes
 
 ### [SSLForFree](https://www.sslforfree.com/)
 
@@ -25,7 +25,7 @@ kubectl create secret tls tls-site-example-com \
 --cert full.crt
 ```
 
-### Point ingress of the site to tls-site-example-com
+### Point ingress to tls secret
 ```bash
 kubectl edit ingress ingress-site-example
 ```
