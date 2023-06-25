@@ -2,6 +2,21 @@
 
 ### Getting started - https://istio.io/latest/docs/setup/getting-started/
 Download istio - https://github.com/istio/istio/releases
+```
+# Extract zip and add bin to PATH
+# For this installation, we use the demo configuration profile
+./bin/istioctl install --set profile=demo -y
+# Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later
+kubectl label namespace default istio-injection=enabled
+# Deploy the sample application
+kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+# Open the application to outside traffic
+kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
+# Get Ingress gateway external ip
+kubectl get svc -n istio-system
+# curl
+curl http://ingress-gateway-LB-ip/productpage
+```
 
 ### Istio release setup - https://istio.io/latest/docs/setup/getting-started/#download
 ```bash
