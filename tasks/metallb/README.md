@@ -2,45 +2,32 @@
 
 ## First identify K8s cluster pod subnet cidr, cidr gives you the available subnet ip range so you can allocate valid ip address from the range to metallb
 ```kubectl cluster-info dump|grep cidr```
-## With helm (preferable)
+## Create a namespace
 ```kubectl create ns metallb-system```
-## With helm (preferable)
+## With manifest
+```https://metallb.universe.tf/installation/#installation-by-manifest```
+## With helm
 ```helm install metallb stable/metallb --namespace metallb-system```
-## By default, the helm chart looks for MetalLB configuration in the metallb-config ConfigMap
+## Configuration
 ```yaml
 cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: ConfigMap
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
 metadata:
+  name: first-pool
   namespace: metallb-system
-  name: metallb-config
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 10.244.1.220-10.244.1.250              #gives MetalLB control over cluster IP range
-EOF
-```
-## https://metallb.universe.tf/installation/
-```kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.8.1/manifests/metallb.yaml```
-
-## https://metallb.universe.tf/configuration/#layer-2-configuration
-```yaml
-cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: ConfigMap
+spec:
+  addresses:
+  - 10.244.1.220-10.244.1.250
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
 metadata:
+  name: example
   namespace: metallb-system
-  name: config
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 10.244.1.220-10.244.1.250              #gives MetalLB control over cluster IP range
+spec:
+  ipAddressPools:
+  - first-pool
 EOF
 ```
 ## Tomcat deployment using LoadBalancer
@@ -84,6 +71,10 @@ EOF
 ```
 
 ## Clean up
+```bash
+kubectl delete -f "manifest from the installation url"
+kubectl delete ns metallb-system
+```
 ```bash
 helm uninstall metallb --namespace metallb-system
 kubectl delete ns metallb-system
