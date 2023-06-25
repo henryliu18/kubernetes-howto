@@ -7,7 +7,10 @@
 ## With manifest
 ```https://metallb.universe.tf/installation/#installation-by-manifest```
 ## With helm
-```helm install metallb stable/metallb --namespace metallb-system```
+```
+helm repo add metallb https://metallb.github.io/metallb
+helm install metallb metallb/metallb --namespace metallb-system
+```
 ## Configuration
 ```yaml
 cat <<EOF | kubectl apply -f -
