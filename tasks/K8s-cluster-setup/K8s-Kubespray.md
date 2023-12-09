@@ -1,10 +1,15 @@
 # Kubernetes installation and cluster creation using Kubespray
 
-## bash into alpine-ansible container
+## bash into ubuntu:22.04 from one of the node hosts or a bastion host that is on the same network as nodes
 ```bash
-sudo apt update
-sudo apt install docker.io -y
-sudo docker run --rm -it -w /home/alpine woahbase/alpine-ansible bash
+sudo docker run --rm -it ubuntu:22.04
+```
+
+## Setup library
+```bash
+apt update
+add-apt-repository --yes --update ppa:ansible/ansible
+apt install git software-properties-common ansible python3-pip -y
 ```
 
 ## Constants
@@ -17,18 +22,20 @@ declare -a IPS="(10.0.0.4 10.0.0.5)"
 tLen=${#IPS[@]}
 ```
 
+## create ssh key for ssh connection with all nodes
+```bash
+ssh-keygen
+cat ~/.ssh/id_rsa > /tmp/key
+chmod 700 /tmp/key
+for (( i=0; i<${tLen}; i++ ));
+do
+  ssh-copy-id ${K8S_INSTALLATION_USER}@${IPS[$i]}
+done
+```
+
 ## kubespray configure
 ```bash
-apk update && \
-apk add gcc && \
-apk add git && \
-apk add python3-dev && \
-apk add musl-dev && \
-apk add libffi-dev && \
-apk add openssl-dev && \
-/usr/bin/python3.7 -m pip install --upgrade pip && \
-git clone https://github.com/kubernetes-sigs/kubespray.git && \
-pip3 uninstall ansible -y && \
+git clone https://github.com/kubernetes-sigs/kubespray.git
 pip3 install -r $PWD/kubespray/requirements.txt
 ```
 
@@ -39,20 +46,6 @@ cp -rfp inventory/sample inventory/mycluster
 
 # Update Ansible inventory file with inventory builder
 CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
-```
-
-## copy ssh private key to /tmp
-```bash
-vi /tmp/key
-```
-
-## add known_hosts
-```bash
-chmod 700 /tmp/key
-for (( i=0; i<${tLen}; i++ ));
-do
-  ssh -i /tmp/key ${K8S_INSTALLATION_USER}@${IPS[$i]} uptime
-done
 ```
 
 ## configure /etc/ansible/hosts
@@ -95,7 +88,7 @@ vi inventory/mycluster/hosts.yaml
 ```
 ## play runbook
 ```bash
-/usr/bin/ansible-playbook --flush-cache -i /home/alpine/kubespray/inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER /home/alpine/kubespray/cluster.yml
+/usr/bin/ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes
 ```
 ## expected output of playbook
 ```bash
