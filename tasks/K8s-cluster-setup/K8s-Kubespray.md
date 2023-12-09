@@ -22,11 +22,15 @@ declare -a IPS="(10.0.0.4 10.0.0.5)"
 tLen=${#IPS[@]}
 ```
 
-## create ssh key for ssh connection with all nodes
+## create ssh private key for ssh connection
 ```bash
 ssh-keygen
 cat ~/.ssh/id_rsa > /tmp/key
 chmod 700 /tmp/key
+```
+
+## update authorized_keys to all nodes
+```bash
 for (( i=0; i<${tLen}; i++ ));
 do
   ssh-copy-id ${K8S_INSTALLATION_USER}@${IPS[$i]}
