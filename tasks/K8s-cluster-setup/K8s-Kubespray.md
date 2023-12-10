@@ -15,8 +15,8 @@ apt install git software-properties-common ansible python3-pip -y
 ## Constants
 ```bash
 #The user on the target servers configured for ssh and sudo.  E.g. ubuntu/azureuser/ec2user/opc depending on cloud providers
-K8S_INSTALLATION_USER=azureuser
-SUDO_PASSWORD=1234
+K8S_INSTALLATION_USER="henry"
+SUDO_PASSWORD="1234"
 #Target IPs
 declare -a IPS="(10.0.0.4 10.0.0.5)"
 #Numbers of indexes in IPS
