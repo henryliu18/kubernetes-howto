@@ -1,15 +1,24 @@
 # Kubernetes installation and cluster creation using Kubespray
 
-## bash into ubuntu:22.04 from one of the node hosts or a bastion host that is on the same network as nodes
+## (option 1: build your own ansible runtime) run ubuntu:22.04 on the same network as nodes
 ```bash
 sudo docker run --rm -it ubuntu:22.04
 ```
-
-## Setup library
+## (option 1) Setup library - python3/ansible/git
 ```bash
 apt update
 add-apt-repository --yes --update ppa:ansible/ansible
 apt install git software-properties-common ansible python3-pip -y
+```
+
+## (option 2: prebuilt) run jfxs/ansible on the same network as nodes
+```bash
+sudo docker run --rm -it --user root jfxs/ansible sh
+```
+
+## (option 2) install bash then open a bash shell
+```bash
+apk add bash; bash
 ```
 
 ## Constants
@@ -25,7 +34,7 @@ tLen=${#IPS[@]}
 
 ## create ssh private key for ssh connection
 ```bash
-ssh-keygen
+ssh-keygen -b 2048 -t rsa -q -N "" -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa > /tmp/key
 chmod 700 /tmp/key
 ```
@@ -66,35 +75,18 @@ do
 done
 ```
 
-## flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
+## (optional) flannel - find kube_network_plugin: calico -> replace with kube_network_plugin: flannel
 ```bash
 sed -i 's/kube_network_plugin: calico/kube_network_plugin: flannel/g' inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 
-## containerd - find container_manager: docker -> replace with container_manager: containerd
-```bash
-sed -i 's/container_manager: docker/container_manager: containerd/g' inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
-```
-
-## containerd - find etcd_deployment_type: docker -> replace with etcd_deployment_type: host
-```bash
-sed -i 's/etcd_deployment_type: docker/etcd_deployment_type: host/g' inventory/mycluster/group_vars/etcd.yml
-```
-
-## containerd - append below code block to containerd.yml
-```bash
-echo 'containerd_registries:
-  "docker.io":
-    - "https://mirror.gcr.io"
-    - "https://registry-1.docker.io"' >> inventory/mycluster/group_vars/all/containerd.yml
-```
-## node placement - modify preferred nodes for control plane/node/etcd...
+## (optional validation) node placement - modify preferred nodes for control plane/node/etcd...
 ```bash
 vi inventory/mycluster/hosts.yaml
 ```
 ## play runbook
 ```bash
-/usr/bin/ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}"
+ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}"
 ```
 ## expected output of playbook
 ```bash
