@@ -86,10 +86,11 @@ vi inventory/mycluster/hosts.yaml
 ```
 ## play runbook - create cluster
 ```bash
+# kube_version variable to overwrite the default latest kube_version
 ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 --become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
 -e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
-./cluster.yml
+./cluster.yml -e kube_version="v1.26.2"
 ```
 
 ## play runbook - upgrade cluster
@@ -97,7 +98,7 @@ ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 --become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
 -e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
-./upgrade-cluster.yml -b -e kube_version="v1.26.2"
+./upgrade-cluster.yml -e kube_version="v1.26.2"
 ```
 
 ## play runbook - destroy cluster
