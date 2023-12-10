@@ -84,10 +84,30 @@ sed -i 's/kube_network_plugin: calico/kube_network_plugin: flannel/g' inventory/
 ```bash
 vi inventory/mycluster/hosts.yaml
 ```
-## play runbook
+## play runbook - create cluster
 ```bash
-ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}"
+ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
+--become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
+-e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
+./cluster.yml
 ```
+
+## play runbook - upgrade cluster
+```bash
+ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
+--become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
+-e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
+./upgrade-cluster.yml -b -e kube_version="v1.26.2"
+```
+
+## play runbook - destroy cluster
+```bash
+ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
+--become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
+-e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
+./reset.yml
+```
+
 ## expected output of playbook
 ```bash
 PLAY RECAP **********************************************************************************************************************************************
