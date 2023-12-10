@@ -16,6 +16,7 @@ apt install git software-properties-common ansible python3-pip -y
 ```bash
 #The user on the target servers configured for ssh and sudo.  E.g. ubuntu/azureuser/ec2user/opc depending on cloud providers
 K8S_INSTALLATION_USER=azureuser
+SUDO_PASSWORD=1234
 #Target IPs
 declare -a IPS="(10.0.0.4 10.0.0.5)"
 #Numbers of indexes in IPS
@@ -56,6 +57,7 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 ```bash
 #echo "node1 ansible_host=10.0.0.4 ansible_user=$K8S_INSTALLATION_USER
 #node2 ansible_host=10.0.0.5 ansible_user=$K8S_INSTALLATION_USER" > /etc/ansible/hosts
+mkdir -p /etc/ansible
 >/etc/ansible/hosts
 for (( i=0; i<${tLen}; i++ ));
 do
@@ -92,7 +94,7 @@ vi inventory/mycluster/hosts.yaml
 ```
 ## play runbook
 ```bash
-/usr/bin/ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes
+/usr/bin/ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml  --become --become-user=root --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER ./cluster.yml -e ignore_assert_errors=yes --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}"
 ```
 ## expected output of playbook
 ```bash
