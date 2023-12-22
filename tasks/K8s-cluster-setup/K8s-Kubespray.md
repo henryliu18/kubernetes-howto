@@ -26,6 +26,7 @@ apk add bash; bash
 #The user on the target servers configured for ssh and sudo.  E.g. ubuntu/azureuser/ec2user/opc depending on cloud providers
 K8S_INSTALLATION_USER="henry"
 SUDO_PASSWORD="1234"
+KUBE_VERSION="v1.26.2"
 #Target IPs
 declare -a IPS="(10.0.0.4 10.0.0.5)"
 #Numbers of indexes in IPS
@@ -90,7 +91,7 @@ vi inventory/mycluster/hosts.yaml
 ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 --become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
 -e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
-./cluster.yml -e kube_version="v1.26.2"
+./cluster.yml -e kube_version="${KUBE_VERSION}"
 ```
 
 ## play runbook - upgrade cluster
@@ -98,7 +99,7 @@ ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 ansible-playbook --flush-cache -i ./inventory/mycluster/hosts.yaml \
 --become --become-user="root" --private-key="/tmp/key" -e ansible_user=$K8S_INSTALLATION_USER \
 -e ignore_assert_errors="yes" --extra-vars "ansible_sudo_pass=${SUDO_PASSWORD}" \
-./upgrade-cluster.yml -e kube_version="v1.26.2"
+./upgrade-cluster.yml -e kube_version="${KUBE_VERSION}"
 ```
 
 ## play runbook - destroy cluster
